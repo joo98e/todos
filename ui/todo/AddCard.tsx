@@ -1,10 +1,14 @@
-import { PlusSvgIcon } from '@ui/svg'
-import { StyledCard } from '@ui/todo/Card'
-import { useState } from 'react'
-import styled from '@emotion/styled'
-import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-import { addToDoList } from '@store/slices/todoSlice'
+import { PlusSvgIcon } from "@ui/svg";
+import { StyledCard } from "@ui/todo/Card";
+import { useState } from "react";
+import styled from "@emotion/styled";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addToDoList } from "@store/slices/todoSlice";
+import ErrorText from "@ui/typography/ErrorText";
+import Button from "@ui/button";
+import PlainText from "@ui/typography/PlainText";
+import FlexBox from "@ui/flex/FlexBox";
 
 const StyledBackDrop = styled.div`
   position: fixed;
@@ -13,7 +17,7 @@ const StyledBackDrop = styled.div`
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.3);
-`
+`;
 
 const StyledGenerateBox = styled.div`
   position: absolute;
@@ -25,17 +29,10 @@ const StyledGenerateBox = styled.div`
   border-radius: 24px;
   box-sizing: border-box;
   padding: 12px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   z-index: 9;
   transform: translate(-50%, -50%);
-`
-
-const StyledSubject = styled.h4`
-  font-size: 20px;
-  color: mediumslateblue;
-`
-
-const StyledContent = styled.div``
+`;
 
 const StyledInput = styled.input`
   display: block;
@@ -44,7 +41,7 @@ const StyledInput = styled.input`
   color: slategrey;
   padding: 4px;
   border-bottom: 1px solid #333;
-`
+`;
 
 const StyledTextArea = styled.textarea`
   display: block;
@@ -54,60 +51,39 @@ const StyledTextArea = styled.textarea`
   padding: 4px;
   border-bottom: 1px solid #333;
   resize: none;
-`
-
-const StyledParagraph = styled.p`
-  text-align: center;
-  padding: 4px;
-`
-
-const StyledButton = styled.button<{
-  primary: string
-}>`
-  width: 80px;
-  height: 35px;
-  font-size: 16px;
-  margin: 8px;
-  background: ${(props) => props.primary};
-`
-
-const StyledButtonGroup = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
+`;
 interface IForm {
-  id: number | Date
-  nickname: string
-  subject: string
-  desc: string
+  id: number | Date;
+  nickname: string;
+  subject: string;
+  desc: string;
 }
 
 const AddCard = () => {
-  const [visible, setVisible] = useState(false)
-  const dispatch = useDispatch()
+  const [visible, setVisible] = useState(false);
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IForm>()
+  } = useForm<IForm>();
 
   const onSubmit = (data: IForm) => {
     dispatch(
       addToDoList({
         ...data,
         id: new Date().getTime(),
+        list: [],
       })
-    )
-    handleToggle()
-  }
+    );
+    handleToggle();
+  };
 
   const handleToggle = () => {
-    setVisible((prev) => !prev)
-    reset()
-  }
+    setVisible((prev) => !prev);
+    reset();
+  };
 
   return (
     <>
@@ -120,48 +96,47 @@ const AddCard = () => {
           <StyledBackDrop onClick={handleToggle} />
           <StyledGenerateBox>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <StyledSubject>to do</StyledSubject>
-              <StyledContent>
+              <PlainText fontSize={24} color="#7b68ee">
+                To Do
+              </PlainText>
+              <div>
                 <StyledInput
-                  {...register('nickname', {
-                    required: '닉네임을 입력해주세요. ',
+                  {...register("nickname", {
+                    required: "닉네임을 입력해주세요. ",
                   })}
-                  placeholder={'닉네임을 입력하세요.'}
+                  placeholder={"닉네임을 입력하세요."}
                 />
                 <StyledInput
-                  {...register('subject', {
-                    required: '제목을 입력해주세요. ',
+                  {...register("subject", {
+                    required: "제목을 입력해주세요. ",
                   })}
-                  placeholder={'제목을 입력하세요.'}
+                  placeholder={"제목을 입력하세요."}
                 />
                 <StyledTextArea
-                  {...register('desc', { required: '내용을 입력해주세요. ' })}
-                  placeholder={'내용을 입력하세요.'}
+                  {...register("desc", { required: "내용을 입력해주세요. " })}
+                  placeholder={"내용을 입력하세요."}
                   rows={4}
                 />
-              </StyledContent>
-              <StyledParagraph>
-                {errors.nickname?.message ||
-                  errors.subject?.message ||
-                  errors.desc?.message}
-              </StyledParagraph>
-              <StyledButtonGroup>
-                <StyledButton
-                  primary={'#D5F5E3'}
-                  onClick={handleSubmit(onSubmit)}
-                >
-                  추가
-                </StyledButton>
-                <StyledButton primary={'#EBEDEF'} onClick={handleToggle}>
+              </div>
+              <ErrorText fontSize={14}>
+                <>
+                  {errors.nickname?.message ||
+                    errors.subject?.message ||
+                    errors.desc?.message}
+                </>
+              </ErrorText>
+              <FlexBox>
+                <Button onClick={handleSubmit(onSubmit)}>추가</Button>
+                <Button primary="#999" onClick={handleToggle}>
                   닫기
-                </StyledButton>
-              </StyledButtonGroup>
+                </Button>
+              </FlexBox>
             </form>
           </StyledGenerateBox>
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default AddCard
+export default AddCard;

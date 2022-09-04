@@ -1,9 +1,11 @@
-import styled from '@emotion/styled'
-import { IToDo } from '@store/slices/types'
-import { useRouter } from 'next/router'
+import styled from "@emotion/styled";
+import { IToDo } from "@store/slices/types";
+import PlainText from "@ui/typography/PlainText";
+import SubText from "@ui/typography/SubText";
+import { useRouter } from "next/router";
 
 export const StyledCard = styled.div<{
-  isIconCard?: boolean
+  isIconCard?: boolean;
 }>`
   ${(props) =>
     props.isIconCard &&
@@ -24,34 +26,20 @@ export const StyledCard = styled.div<{
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   }
-`
-
-const StyledCardTitle = styled.h2`
-  display: block;
-  font-size: 20px;
-  color: #212f3c;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`
-
-const StyledCardDesc = styled.p`
-  font-size: 14px;
-  color: #4d5656;
-`
+`;
 
 const Card = ({ id, subject, desc }: IToDo) => {
-  const router = useRouter()
+  const router = useRouter();
 
   const handleClickDetail = () => {
-    router.push(`/detail/${id}`)
-  }
+    router.push(`/detail/${id}`);
+  };
   return (
     <StyledCard onClick={handleClickDetail}>
-      <StyledCardTitle>{subject ?? '제목 없음'}</StyledCardTitle>
-      <StyledCardDesc>{desc ?? ' - '}</StyledCardDesc>
+      <PlainText oneline={true}>{subject ?? "제목 없음"}</PlainText>
+      <SubText>{desc ?? " - "}</SubText>
     </StyledCard>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
