@@ -1,18 +1,15 @@
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@store/index";
-import { IToDo, IToDoDetail } from "@store/slices/types";
+import { IToDo } from "@store/slices/types";
 import styled from "@emotion/styled";
-import Row from "./Row";
 import PlainText from "@ui/typography/PlainText";
 import SubText from "@ui/typography/SubText";
+import Row from "@ui/detail/Row";
+import AddToDo from "@ui/detail/AddToDo";
 import FlexBox from "@ui/flex/FlexBox";
-import Button from "@ui/button";
-import { addDetailToDo } from "@store/slices/todoSlice";
-import { Divider } from "antd";
-import { useEffect, useState } from "react";
-import AddToDo from "./AddToDo";
 import ErrorText from "@ui/typography/ErrorText";
+import { Divider } from "antd";
 
 const StyledToDoDetailBox = styled.div`
   width: 100%;
@@ -25,7 +22,7 @@ const DetailToDoPage = () => {
   const toDoId = router.query.id ? +router.query.id : null;
 
   const toDo: IToDo = useSelector((state: RootState) => {
-    return state.todo.todo.filter((item) => item.id === toDoId)[0];
+    return state.toDoState.todos.filter((item) => item.id === toDoId)[0];
   });
 
   return (

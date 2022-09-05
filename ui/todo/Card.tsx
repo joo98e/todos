@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
-import { IToDo } from "@store/slices/types";
-import PlainText from "@ui/typography/PlainText";
-import SubText from "@ui/typography/SubText";
-import { useRouter } from "next/router";
+import styled from '@emotion/styled';
+import { IToDo } from '@store/slices/types';
+import PlainText from '@ui/typography/PlainText';
+import SubText from '@ui/typography/SubText';
+import { useRouter } from 'next/router';
 
 export const StyledCard = styled.div<{
   isIconCard?: boolean;
@@ -36,8 +36,8 @@ const Card = ({ id, subject, desc, list = [] }: IToDo) => {
   };
   return (
     <StyledCard onClick={handleClickDetail}>
-      <PlainText oneline={true}>{subject ?? "제목 없음"}</PlainText>
-      <SubText>{desc ?? " - "}</SubText>
+      <PlainText oneLine={true}>{subject ?? '제목 없음'}</PlainText>
+      <SubText>{desc ?? ' - '}</SubText>
     </StyledCard>
   );
 };

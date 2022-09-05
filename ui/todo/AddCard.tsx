@@ -4,7 +4,7 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { addToDoList } from "@store/slices/todoSlice";
+import { addToDoList } from "@store/slices/toDoSlice";
 import ErrorText from "@ui/typography/ErrorText";
 import Button from "@ui/button";
 import PlainText from "@ui/typography/PlainText";

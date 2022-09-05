@@ -7,7 +7,7 @@ import {
   addDetailToDo,
   addToDoList,
   completedDetailToDo,
-} from "@store/slices/todoSlice";
+} from "@store/slices/toDoSlice";
 import ErrorText from "@ui/typography/ErrorText";
 import Button from "@ui/button";
 import PlainText from "@ui/typography/PlainText";
