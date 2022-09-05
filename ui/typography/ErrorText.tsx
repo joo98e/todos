@@ -8,7 +8,7 @@ const StyledErrorText = styled.p<{
   oneLine?: boolean;
 }>`
   font-size: ${(props) => props.fontSize}px;
-  color: #9c3434;
+  color: #c65959;
 
   ${(props) =>
     props.oneLine &&

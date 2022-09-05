@@ -6,7 +6,7 @@ import SubText from "@ui/typography/SubText";
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
   align-items: center;
 `;
@@ -42,6 +42,15 @@ const Row = ({ detail: { id, isCompleted, desc, title } }: IRow) => {
           </SubText>
         ) : (
           <SubText fontSize={16}>{desc}</SubText>
+        )}
+      </GridItem>
+      <GridItem>
+        {!isCompleted ? (
+          <Button onClick={() => {}}>완료하기</Button>
+        ) : (
+          <Button primary={"#5d5d5d"} textPrimary={"#fff"} onClick={() => {}}>
+            완료됨
+          </Button>
         )}
       </GridItem>
     </Grid>
