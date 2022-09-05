@@ -1,8 +1,12 @@
 import styled from "@emotion/styled";
-import { IToDoDetail } from "@store/slices/types";
+import { IToDo, IToDoDetail } from "@store/slices/types";
 import Button from "@ui/button";
 import PlainText from "@ui/typography/PlainText";
 import SubText from "@ui/typography/SubText";
+import CompleteToDo from "./CompleteToDo";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { RootState } from "@store/index";
 
 const Grid = styled.div`
   display: grid;
@@ -18,6 +22,12 @@ interface IRow {
 }
 
 const Row = ({ detail: { id, isCompleted, desc, title } }: IRow) => {
+  const router = useRouter();
+  const toDoId = router.query.id ? +router.query.id : null;
+  const toDo: IToDo = useSelector((state: RootState) => {
+    return state.todo.todo.filter((item) => item.id === toDoId)[0];
+  });
+
   return (
     <Grid>
       <GridItem>
@@ -46,7 +56,7 @@ const Row = ({ detail: { id, isCompleted, desc, title } }: IRow) => {
       </GridItem>
       <GridItem>
         {!isCompleted ? (
-          <Button onClick={() => {}}>완료하기</Button>
+          <CompleteToDo detailToDoId={id} toDoId={toDoId ?? 0} toDo={toDo} />
         ) : (
           <Button primary={"#5d5d5d"} textPrimary={"#fff"} onClick={() => {}}>
             완료됨

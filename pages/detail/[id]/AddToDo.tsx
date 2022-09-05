@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { addDetailTodo, addToDoList } from "@store/slices/todoSlice";
+import { addDetailToDo, addToDoList } from "@store/slices/todoSlice";
 import ErrorText from "@ui/typography/ErrorText";
 import Button from "@ui/button";
 import PlainText from "@ui/typography/PlainText";
@@ -91,7 +91,7 @@ const AddToDo = ({ toDoId, toDo }: { toDoId: number; toDo: IToDo }) => {
     });
 
     dispatch(
-      addDetailTodo({
+      addDetailToDo({
         nextToDoState,
       })
     );

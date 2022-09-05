@@ -8,7 +8,7 @@ import PlainText from "@ui/typography/PlainText";
 import SubText from "@ui/typography/SubText";
 import FlexBox from "@ui/flex/FlexBox";
 import Button from "@ui/button";
-import { addDetailTodo } from "@store/slices/todoSlice";
+import { addDetailToDo } from "@store/slices/todoSlice";
 import { Divider } from "antd";
 import { useEffect, useState } from "react";
 import AddToDo from "./AddToDo";
