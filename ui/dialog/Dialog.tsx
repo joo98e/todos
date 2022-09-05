@@ -1,49 +1,56 @@
 /**
- * @legacy
+ * @legacy Code
  */
+import styled from "@emotion/styled";
+import { MouseEventHandler } from "react";
+import { css } from "@emotion/css";
 
-import { IDialogProps } from '@ui/dialog/types'
-import styled from '@emotion/styled'
+const Wrapper = styled.div<{
+  visible: boolean;
+}>`
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+  transition: opacity 0.5s;
+`;
 
-const DialogBackground = styled.div`
+const BackDrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.2);
-`
+  background: rgba(0, 0, 0, 0.3);
+`;
 
-const DialogWrapper = styled.div`
-  width: 480px;
-  height: 480px;
-  background: #fff;
-`
-
-const DialogHeader = styled.div`
-  font-size: 32px;
-`
-
-const DialogContent = styled.div``
+const Alert = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  min-height: 200px;
+  background: #fdfdfd;
+  border-radius: 24px;
+  box-sizing: border-box;
+  padding: 12px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  z-index: 9;
+  transform: translate(-50%, -50%);
+`;
 
 const Dialog = ({
-  isOpen = false,
-  subject,
-  content,
-}: IDialogProps) => {
+  children,
+  isVisible,
+  onExit,
+}: {
+  children: JSX.Element | JSX.Element[] | string;
+  isVisible: boolean;
+  onExit: MouseEventHandler<HTMLButtonElement>;
+}) => {
   return (
-    <DialogBackground>
-      {!isOpen && (
-        <DialogWrapper>
-          <DialogHeader>{subject}</DialogHeader>
-          <DialogContent>{content}</DialogContent>
-        </DialogWrapper>
-      )}
-    </DialogBackground>
-  )
-}
+    <Wrapper visible={isVisible}>
+      <BackDrop />
+      <Alert>{children}</Alert>
+    </Wrapper>
+  );
+};
 
-export default Dialog
+export default Dialog;

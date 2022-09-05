@@ -16,7 +16,7 @@ const StyledButton = styled.button<{
   font-size: 16px;
   margin: 8px;
   color: ${(props) => props.textPrimary ?? "#fff"};
-  background: ${(props) => props.primary ?? "#ff5c5c"};
+  background: ${(props) => props.primary ?? "#f68484"};
   border-radius: 8px;
 `;
 

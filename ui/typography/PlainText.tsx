@@ -1,16 +1,18 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Color } from "@ui/button";
+import { CSSProperties } from "react";
 
 const StyledPlainText = styled.p<{
   fontSize?: number;
-  oneline?: boolean;
+  oneLine?: boolean;
   color?: Color;
 }>`
   font-size: ${(props) => props.fontSize}px;
   color: ${(props) => props.color ?? "#212f3c"};
+
   ${(props) =>
-    props.oneline &&
+    props.oneLine &&
     css`
       white-space: nowrap;
       overflow: hidden;
@@ -21,20 +23,23 @@ const StyledPlainText = styled.p<{
 const PlainText = ({
   fontSize = 16,
   children,
-  oneline = false,
+  oneLine = false,
   color,
+  style,
   ...rest
 }: {
   fontSize?: number;
-  oneline?: boolean;
+  oneLine?: boolean;
   color?: Color;
+  style?: CSSProperties;
   children: JSX.Element | string;
 }) => {
   return (
     <StyledPlainText
-      oneline={oneline}
+      oneLine={oneLine}
       fontSize={fontSize}
       color={color}
+      style={style}
       {...rest}
     >
       {children}

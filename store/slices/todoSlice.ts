@@ -11,15 +11,15 @@ const initialState: IToDoListInitialState = {
       list: [
         {
           id: 1,
-          title: "할 일 1",
-          desc: "이것",
-          isCompleted: false,
+          title: "물 주기",
+          desc: "식물에 물 주기",
+          isCompleted: true,
         },
         {
           id: 2,
-          title: "할 일 2",
-          desc: "저것",
-          isCompleted: true,
+          title: "우산 접기",
+          desc: "우산 물 털고 접기",
+          isCompleted: false,
         },
       ],
     },
@@ -38,10 +38,9 @@ const toDoSlice = createSlice({
 
     addDetailTodo(
       state,
-      action: PayloadAction<{ current: IToDo; todo: IToDoDetail }>
+      action: PayloadAction<{ toDoId: number; detailToDo: IToDoDetail }>
     ) {
-      const nextState = action.payload.current;
-      nextState.list.unshift(action.payload.todo);
+      action.payload.detailToDo.id;
     },
 
     deleteDetailTodo() {},
@@ -49,11 +48,8 @@ const toDoSlice = createSlice({
     completedDetailTodo(
       state,
       action: PayloadAction<{ current: IToDo; todo: IToDoDetail }>
-    ) {
-      const nextState = action.payload.current;
-      nextState.list.unshift(action.payload.todo);
-    },
+    ) {},
   },
 });
-export const { addToDoList, DeleteToDoList } = toDoSlice.actions;
+export const { addToDoList, DeleteToDoList, addDetailTodo } = toDoSlice.actions;
 export default toDoSlice.reducer;

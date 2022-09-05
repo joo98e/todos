@@ -1,58 +1,51 @@
-import styled from '@emotion/styled'
-import { IToDoDetail } from '@store/slices/types'
-import { useState } from 'react'
+import styled from "@emotion/styled";
+import { IToDoDetail } from "@store/slices/types";
+import Button from "@ui/button";
+import PlainText from "@ui/typography/PlainText";
+import SubText from "@ui/typography/SubText";
 
-const StyledRow = styled.li`
-  display: flex;
-  align-items: baseline;
-  width: 100%;
-  max-height: 40px;
-`
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+`;
 
-const StyledCell = styled.div<{ width?: number }>`
-  min-width: 20px;
-  width: ${(props) => props.width}px;
-`
+const GridItem = styled.div``;
 
-const StyledTitle = styled.p<{ isCompleted: boolean }>`
-  display: block;
-  font-size: 18px;
-  color: #333;
-  text-decoration: ${(props) => props.isCompleted && 'line-through'};
-`
-
-const StyledDescription = styled.p`
-  display: block;
-  font-size: 14px;
-  color: #777;
-`
-
-const Row = ({ id, title, desc, isCompleted }: IToDoDetail) => {
-  const [selected, setSelected] = useState([])
-
-  return (
-    <StyledRow>
-      <StyledCell>
-        {!isCompleted ? (
-          <input type={'checkbox'} />
-        ) : (
-          <input
-            type={'checkbox'}
-            checked={isCompleted}
-            disabled={isCompleted}
-          />
-        )}
-      </StyledCell>
-
-      <StyledCell width={120}>
-        <StyledTitle isCompleted={isCompleted}>{title}</StyledTitle>
-      </StyledCell>
-
-      <StyledCell width={100}>
-        <StyledDescription>{desc}</StyledDescription>
-      </StyledCell>
-    </StyledRow>
-  )
+interface IRow {
+  detail: IToDoDetail;
 }
 
-export default Row
+const Row = ({ detail: { id, isCompleted, desc, title } }: IRow) => {
+  return (
+    <Grid>
+      <GridItem>
+        {isCompleted ? (
+          <PlainText
+            style={{ textDecoration: "line-through", color: "#777" }}
+            fontSize={18}
+          >
+            {title}
+          </PlainText>
+        ) : (
+          <PlainText fontSize={18}>{title}</PlainText>
+        )}
+      </GridItem>
+      <GridItem>
+        {isCompleted ? (
+          <SubText
+            fontSize={16}
+            style={{ textDecoration: "line-through", color: "#777" }}
+          >
+            {desc}
+          </SubText>
+        ) : (
+          <SubText fontSize={16}>{desc}</SubText>
+        )}
+      </GridItem>
+    </Grid>
+  );
+};
+
+export default Row;

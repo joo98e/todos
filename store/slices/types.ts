@@ -15,7 +15,7 @@ export interface IToDo {
 }
 
 export interface IToDoDetail {
-  id?: number;
+  id: number;
   title: string;
   desc: string;
   isCompleted: boolean;

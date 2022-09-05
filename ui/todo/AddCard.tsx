@@ -20,7 +20,7 @@ const StyledBackDrop = styled.div`
 `;
 
 const StyledGenerateBox = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   width: 400px;
@@ -29,7 +29,7 @@ const StyledGenerateBox = styled.div`
   border-radius: 24px;
   box-sizing: border-box;
   padding: 12px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
   z-index: 9;
   transform: translate(-50%, -50%);
 `;
@@ -52,6 +52,7 @@ const StyledTextArea = styled.textarea`
   border-bottom: 1px solid #333;
   resize: none;
 `;
+
 interface IForm {
   id: number | Date;
   nickname: string;
@@ -62,6 +63,7 @@ interface IForm {
 const AddCard = () => {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -125,7 +127,7 @@ const AddCard = () => {
                     errors.desc?.message}
                 </>
               </ErrorText>
-              <FlexBox>
+              <FlexBox justifyContent={"center"} alignItems={"center"}>
                 <Button onClick={handleSubmit(onSubmit)}>추가</Button>
                 <Button primary="#999" onClick={handleToggle}>
                   닫기

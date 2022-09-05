@@ -1,9 +1,9 @@
 const getPageTitleByPathname = (pathname: string) => {
-  return pathname === '/'
+  return pathname === "/"
     ? // Home
-      'ToDos'
+      "To Do App"
     : // DetailPage
-      'Detail Page'
-}
+      "Detail Page";
+};
 
-export default getPageTitleByPathname
+export default getPageTitleByPathname;

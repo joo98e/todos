@@ -1,14 +1,18 @@
-import getPageTitleByPathname from '@utils/getPageTitleByPathname'
-import { useRouter } from 'next/router'
-import styled from '@emotion/styled'
-import { PrevSvgIcon } from '@ui/svg'
+import getPageTitleByPathname from "@utils/getPageTitleByPathname";
+import { useRouter } from "next/router";
+import styled from "@emotion/styled";
+import { PrevSvgIcon } from "@ui/svg";
 
 const StyledTitle = styled.h1`
   position: relative;
+  top: 0;
+  left: 0;
   display: block;
   font-size: 36px;
-  text-align: center;
-`
+  text-indent: 56px;
+  font-family: "LeferiPoint-WhiteObliqueA", sans-serif;
+  padding-left: 12px;
+`;
 
 const IconButton = styled.button`
   position: absolute;
@@ -23,11 +27,11 @@ const IconButton = styled.button`
   &:hover {
     background: rgba(0, 0, 0, 0.1);
   }
-`
+`;
 
 const Title = () => {
-  const router = useRouter()
-  const status = /detail/.test(router.pathname)
+  const router = useRouter();
+  const status = /detail/.test(router.pathname);
 
   return (
     <StyledTitle>
@@ -38,7 +42,7 @@ const Title = () => {
       )}
       {getPageTitleByPathname(router.pathname)}
     </StyledTitle>
-  )
-}
+  );
+};
 
-export default Title
+export default Title;

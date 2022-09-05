@@ -1,17 +1,16 @@
-import Title from './Title'
-import styled from '@emotion/styled'
+import Title from "./Title";
+import styled from "@emotion/styled";
+
+const Children = styled.div``;
 
 const Wrapper = styled.div`
-  width: 720px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  width: 100vw;
   margin: 0 auto;
   padding-top: 24px;
-`
-
-const Children = styled.div`
-  width: 720px;
-  margin: 0 auto;
-  padding-top: 24px;
-`
+  padding-bottom: 24px;
+`;
 
 const Layout = ({ children }: any) => {
   return (
@@ -21,7 +20,7 @@ const Layout = ({ children }: any) => {
       {/* Children */}
       <Children>{children}</Children>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

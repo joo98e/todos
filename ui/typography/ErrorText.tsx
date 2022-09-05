@@ -1,16 +1,17 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Color } from "@ui/button";
+import { CSSProperties } from "react";
 
 const StyledErrorText = styled.p<{
   fontSize?: number;
-  oneline?: boolean;
+  oneLine?: boolean;
 }>`
   font-size: ${(props) => props.fontSize}px;
   color: #9c3434;
 
   ${(props) =>
-    props.oneline &&
+    props.oneLine &&
     css`
       white-space: nowrap;
       overflow: hidden;
@@ -22,19 +23,22 @@ const ErrorText = ({
   fontSize = 12,
   children,
   color,
-  oneline = false,
+  oneLine = false,
+  style,
   ...rest
 }: {
   fontSize?: number;
-  oneline?: boolean;
+  oneLine?: boolean;
   color?: Color;
+  style?: CSSProperties;
   children: JSX.Element | string;
 }) => {
   return (
     <StyledErrorText
-      oneline={oneline}
+      oneLine={oneLine}
       fontSize={fontSize}
       color={color}
+      style={style}
       {...rest}
     >
       {children}

@@ -1,17 +1,18 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Color } from "@ui/button";
+import { CSSProperties } from "react";
 
 const StyledSubText = styled.p<{
   fontSize?: number;
-  oneline?: boolean;
+  oneLine?: boolean;
   color?: Color;
 }>`
   font-size: ${(props) => props.fontSize}px;
   color: ${(props) => props.color ?? "#777777"};
 
   ${(props) =>
-    props.oneline &&
+    props.oneLine &&
     css`
       white-space: nowrap;
       overflow: hidden;
@@ -23,19 +24,22 @@ const SubText = ({
   fontSize = 12,
   children,
   color,
-  oneline = false,
+  style,
+  oneLine = false,
   ...rest
 }: {
   fontSize?: number;
-  oneline?: boolean;
+  oneLine?: boolean;
   color?: Color;
+  style?: CSSProperties;
   children: JSX.Element | string;
 }) => {
   return (
     <StyledSubText
-      oneline={oneline}
+      oneLine={oneLine}
       fontSize={fontSize}
       color={color}
+      style={style}
       {...rest}
     >
       {children}

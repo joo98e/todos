@@ -28,11 +28,11 @@ export const StyledCard = styled.div<{
   }
 `;
 
-const Card = ({ id, subject, desc }: IToDo) => {
+const Card = ({ id, subject, desc, list = [] }: IToDo) => {
   const router = useRouter();
 
   const handleClickDetail = () => {
-    router.push(`/detail/${id}`);
+    router.push(`/detail/${id}`).then((r) => {});
   };
   return (
     <StyledCard onClick={handleClickDetail}>
