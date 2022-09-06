@@ -28,7 +28,7 @@ const AddToDo = ({
 }) => {
   const [visible, setVisible] = useState(false);
   // TODO 이름 바꾸기 (todo.todo)
-  const allToDos = useSelector((state: RootState) => state.todo.todo);
+  const allToDos = useSelector((state: RootState) => state.toDoState.todos);
   const dispatch = useDispatch();
   const onComplete = () => {
     let a = [...allToDos.filter((item) => item.id !== toDoId)];
