@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IToDo, IToDoDetail } from "@store/slices/types";
+
 import Button from "@ui/button";
 import PlainText from "@ui/typography/PlainText";
 import SubText from "@ui/typography/SubText";
@@ -7,6 +7,7 @@ import CompleteToDo from "./CompleteToDo";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@store/index";
+import { IToDo, IToDoDetail } from "@common/types/ToDo";
 
 const Grid = styled.div`
   display: grid;

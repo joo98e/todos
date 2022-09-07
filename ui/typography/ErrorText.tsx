@@ -19,6 +19,14 @@ const StyledErrorText = styled.p<{
     `};
 `;
 
+interface IErrorTextProps {
+  fontSize?: number;
+  oneLine?: boolean;
+  color?: Color;
+  style?: CSSProperties;
+  children: JSX.Element | string;
+}
+
 const ErrorText = ({
   fontSize = 12,
   children,
@@ -26,13 +34,7 @@ const ErrorText = ({
   oneLine = false,
   style,
   ...rest
-}: {
-  fontSize?: number;
-  oneLine?: boolean;
-  color?: Color;
-  style?: CSSProperties;
-  children: JSX.Element | string;
-}) => {
+}: IErrorTextProps) => {
   return (
     <StyledErrorText
       oneLine={oneLine}

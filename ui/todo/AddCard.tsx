@@ -54,7 +54,7 @@ const StyledTextArea = styled.textarea`
 `;
 
 interface IForm {
-  id: number | Date;
+  id: deleteToDoList;
   nickname: string;
   subject: string;
   desc: string;

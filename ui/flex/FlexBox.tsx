@@ -1,24 +1,21 @@
 import styled from "@emotion/styled";
 
-const StyledFlexBox = styled.div<{
-  justifyContent: "center" | "start" | "end";
+interface StyledFlexBoxProps {
+  justifyContent: "center" | "start" | "end" | "space-around" | "space-between";
   alignItems: "center" | "start" | "end";
-}>`
+}
+
+const StyledFlexBox = styled.div<StyledFlexBoxProps>`
   display: flex;
   justify-content: ${(props) => props.justifyContent};
   align-items: ${(props) => props.alignItems};
 `;
 
-// React.FC
-const FlexBox = ({
-  children,
-  justifyContent,
-  alignItems,
-}: {
+interface IFlexBoxProps extends StyledFlexBoxProps {
   children: JSX.Element | JSX.Element[];
-  justifyContent: "center" | "start" | "end";
-  alignItems: "center" | "start" | "end";
-}) => {
+}
+
+const FlexBox = ({ children, justifyContent, alignItems }: IFlexBoxProps) => {
   return (
     <StyledFlexBox justifyContent={justifyContent} alignItems={alignItems}>
       {children}

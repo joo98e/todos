@@ -3,15 +3,16 @@ import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { addDetailToDo, addToDoList } from "@store/slices/toDoSlice";
 import ErrorText from "@ui/typography/ErrorText";
 import Button from "@ui/button";
 import PlainText from "@ui/typography/PlainText";
 import FlexBox from "@ui/flex/FlexBox";
 import { PlusSvgIcon } from "@ui/svg";
 import { log } from "util";
-import { IToDo, IToDoDetail } from "@store/slices/types";
 import { RootState } from "@store/index";
+import { IToDo } from "@common/types/ToDo";
+import useToDo from "../../src/hooks/useToDo";
+import { addToDoDetail } from "@store/slices/toDoSlice";
 
 const StyledBackDrop = styled.div`
   position: fixed;
@@ -63,9 +64,7 @@ interface IForm {
 
 const AddToDo = ({ toDoId, toDo }: { toDoId: number; toDo: IToDo }) => {
   const [visible, setVisible] = useState(false);
-
-  // TODO 이름 바꾸기 (todo.todo)
-  const allToDos = useSelector((state: RootState) => state.toDoState.toDos);
+  const { addDetail } = useToDo();
 
   const dispatch = useDispatch();
   const {
@@ -79,22 +78,14 @@ const AddToDo = ({ toDoId, toDo }: { toDoId: number; toDo: IToDo }) => {
     if (!toDoId || !data || !toDo) {
       return false;
     }
-    const nextToDoState: IToDo[] = JSON.parse(JSON.stringify(allToDos));
 
-    nextToDoState.forEach((item, index) => {
-      item.id === toDoId &&
-        nextToDoState[index].list.unshift({
-          id: new Date().getTime(),
-          ...data,
-          isCompleted: false,
-        });
+    addDetail({
+      id: toDoId,
+      data: {
+        ...data,
+      },
     });
 
-    dispatch(
-      addDetailToDo({
-        nextToDoState,
-      })
-    );
     handleToggle();
   };
 

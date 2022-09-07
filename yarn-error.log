@@ -436,7 +436,7 @@ Lockfile:
   
   "@babel/plugin-proposal-class-static-block@^7.18.6":
     version "7.18.6"
-    resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-static-block/-/plugin-proposal-class-static-block-7.18.6.tgz#8aa81d403ab72d3962fc06c26e222dacfc9b9020"
+    resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-static-block/-/plugin-proposal-class-static-block-7.18.6.tgz#8aa81d403ab72d3962fc06c26edeleteToDoListdacfc9b9020"
     integrity sha512-+I3oIiNxrCpup3Gi8n5IGMwj0gOCAjcJUSQEcotNnCCPMEnixawOQ+KeJPlgfjzx+FKQ1QSyZOWe7wmoJp7vhw==
     dependencies:
       "@babel/helper-create-class-features-plugin" "^7.18.6"

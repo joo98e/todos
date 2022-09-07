@@ -29,7 +29,14 @@ export const StyledCard = styled.div<{
   }
 `;
 
-const Card = ({ id, subject, desc, list = [], ...rest }: IToDo) => {
+interface ICardProps {
+  id: number;
+  subject: string;
+  desc: string;
+  list: any[];
+}
+
+const Card = ({ id, subject, desc, list = [], ...rest }: ICardProps) => {
   const router = useRouter();
 
   const handleClickDetail = () => {

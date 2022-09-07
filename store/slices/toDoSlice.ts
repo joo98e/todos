@@ -36,7 +36,7 @@ const toDoSlice = createSlice({
 
     deleteToDoList() {},
 
-    addDetailToDo(state, action: PayloadAction<{ nextToDoState: IToDo[] }>) {
+    addToDoDetail(state, action: PayloadAction<{ nextToDoState: IToDo[] }>) {
       state.toDos = action.payload.nextToDoState;
     },
 
@@ -54,7 +54,7 @@ const toDoSlice = createSlice({
 const toDoState = toDoSlice.reducer;
 export const addToDoList = toDoSlice.actions.addToDoList;
 export const deleteToDoList = toDoSlice.actions.deleteToDoList;
-export const addDetailToDo = toDoSlice.actions.addDetailToDo;
+export const addToDoDetail = toDoSlice.actions.addToDoDetail;
 export const deleteDetailToDo = toDoSlice.actions.deleteDetailToDo;
 export const completedDetailToDo = toDoSlice.actions.completedDetailToDo;
 

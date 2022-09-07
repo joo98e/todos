@@ -7,10 +7,7 @@ import { JSXElementConstructor, PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 
 interface IUseReduxProvider {
-  ui:
-    | React.ReactElement<any, any>
-    | React.ReactElement<any, string | JSXElementConstructor<any>>
-    | Element;
+  ui: React.ReactElement<any, string | JSXElementConstructor<any>> | Element;
 }
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {

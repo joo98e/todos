@@ -20,6 +20,14 @@ const StyledPlainText = styled.p<{
     `};
 `;
 
+interface IPlainTextProps {
+  fontSize?: number;
+  oneLine?: boolean;
+  color?: Color;
+  style?: CSSProperties;
+  children: JSX.Element | string;
+}
+
 const PlainText = ({
   fontSize = 16,
   children,
@@ -27,13 +35,7 @@ const PlainText = ({
   color,
   style,
   ...rest
-}: {
-  fontSize?: number;
-  oneLine?: boolean;
-  color?: Color;
-  style?: CSSProperties;
-  children: JSX.Element | string;
-}) => {
+}: IPlainTextProps) => {
   return (
     <StyledPlainText
       oneLine={oneLine}

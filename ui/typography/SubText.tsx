@@ -20,6 +20,7 @@ const StyledSubText = styled.p<{
     `};
 `;
 
+
 const SubText = ({
   fontSize = 12,
   children,
