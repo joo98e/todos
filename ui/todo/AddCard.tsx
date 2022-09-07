@@ -54,7 +54,7 @@ const StyledTextArea = styled.textarea`
 `;
 
 interface IForm {
-  id: deleteToDoList;
+  id: number;
   nickname: string;
   subject: string;
   desc: string;
@@ -90,7 +90,7 @@ const AddCard = () => {
   return (
     <>
       <StyledCard isIconCard={true} onClick={handleToggle}>
-        <PlusSvgIcon />
+        <PlusSvgIcon width={"32px"} height={"32px"} />
         추가
       </StyledCard>
 

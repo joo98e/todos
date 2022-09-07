@@ -1,11 +1,6 @@
 import styled from "@emotion/styled";
 import { MouseEventHandler } from "react";
-
-type RGB = `rgb(${number}, ${number}, ${number})`;
-type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
-type HEX = `#${string}`;
-
-export type Color = RGB | RGBA | HEX;
+import { Color, IButtonProps } from "@ui/button/types";
 
 const StyledButton = styled.button<{
   primary?: Color;
@@ -18,6 +13,7 @@ const StyledButton = styled.button<{
   color: ${(props) => props.textPrimary ?? "#fff"};
   background: ${(props) => props.primary ?? "#f68484"};
   border-radius: 8px;
+  cursor: pointer;
 `;
 
 const Button = ({
@@ -26,12 +22,7 @@ const Button = ({
   onClick,
   textPrimary,
   ...rest
-}: {
-  primary?: Color;
-  textPrimary?: Color;
-  children: JSX.Element | string;
-  onClick: MouseEventHandler<HTMLButtonElement>;
-}) => {
+}: IButtonProps) => {
   return (
     <StyledButton primary={primary} textPrimary={textPrimary} onClick={onClick}>
       {children}

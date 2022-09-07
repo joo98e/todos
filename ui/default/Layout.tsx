@@ -1,8 +1,6 @@
 import Title from "./Title";
 import styled from "@emotion/styled";
 
-const Children = styled.div``;
-
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -11,8 +9,8 @@ const Wrapper = styled.div`
   padding-top: 24px;
   padding-bottom: 24px;
 `;
-
-const Layout = ({ children }: any) => {
+const Children = styled.div``;
+const Layout = ({ children }) => {
   return (
     <Wrapper>
       {/* Title */}

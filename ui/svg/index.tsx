@@ -1,7 +1,13 @@
-export const PlusSvgIcon = () => {
+import { CSSProperties } from "react";
+import { ISVGProps } from "@ui/svg/types";
+
+export const PlusSvgIcon = ({ width, height, style, ...rest }: ISVGProps) => {
   return (
     <svg
-      className="w-6 h-6"
+      width={width}
+      height={height}
+      style={style}
+      {...rest}
       fill="currentColor"
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
@@ -12,13 +18,16 @@ export const PlusSvgIcon = () => {
         clipRule="evenodd"
       ></path>
     </svg>
-  )
-}
+  );
+};
 
-export const PrevSvgIcon = () => {
+export const PrevSvgIcon = ({ width, height, style, ...rest }: ISVGProps) => {
   return (
     <svg
-      className="w-8 h-8"
+      width={width}
+      height={height}
+      style={style}
+      {...rest}
       fill="currentColor"
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
@@ -29,5 +38,5 @@ export const PrevSvgIcon = () => {
         clipRule="evenodd"
       ></path>
     </svg>
-  )
-}
+  );
+};

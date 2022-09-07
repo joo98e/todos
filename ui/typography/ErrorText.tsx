@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Color } from "@ui/button";
 import { CSSProperties } from "react";
+import { ITextProps } from "@ui/typography/types";
 
 const StyledErrorText = styled.p<{
   fontSize?: number;
@@ -19,14 +20,6 @@ const StyledErrorText = styled.p<{
     `};
 `;
 
-interface IErrorTextProps {
-  fontSize?: number;
-  oneLine?: boolean;
-  color?: Color;
-  style?: CSSProperties;
-  children: JSX.Element | string;
-}
-
 const ErrorText = ({
   fontSize = 12,
   children,
@@ -34,7 +27,7 @@ const ErrorText = ({
   oneLine = false,
   style,
   ...rest
-}: IErrorTextProps) => {
+}: ITextProps) => {
   return (
     <StyledErrorText
       oneLine={oneLine}

@@ -1,7 +1,7 @@
 @import "~antd/dist/antd.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/
 
 @font-face {
   font-family: "Pretendard-Regular";
@@ -19,7 +19,7 @@
   font-style: normal;
 }
 
-Ï html,
+html,
 body {
   min-height: 100vh;
   padding: 0;
@@ -40,6 +40,13 @@ a {
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+p {
+  margin-bottom: 0;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -56,4 +63,12 @@ input:focus,
 textarea:focus,
 button:focus {
   outline: none;
+}
+
+input,
+textarea,
+button {
+  padding: 0;
+  outline: 0;
+  border: 0;
 }

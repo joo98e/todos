@@ -7,7 +7,8 @@ import CompleteToDo from "./CompleteToDo";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@store/index";
-import { IToDo, IToDoDetail } from "@common/types/ToDo";
+import { IToDo } from "@common/types/ToDo";
+import { IRowProps } from "@ui/detail/types";
 
 const Grid = styled.div`
   display: grid;
@@ -18,11 +19,7 @@ const Grid = styled.div`
 
 const GridItem = styled.div``;
 
-interface IRow {
-  detail: IToDoDetail;
-}
-
-const Row = ({ detail: { id, isCompleted, desc, title } }: IRow) => {
+const Row = ({ detail: { id, isCompleted, desc, title } }: IRowProps) => {
   const router = useRouter();
   const toDoId = router.query.id ? +router.query.id : null;
   const toDo: IToDo = useSelector((state: RootState) => {
@@ -57,7 +54,7 @@ const Row = ({ detail: { id, isCompleted, desc, title } }: IRow) => {
       </GridItem>
       <GridItem>
         {!isCompleted ? (
-          <CompleteToDo detailToDoId={id} toDoId={toDoId ?? 0} toDo={toDo} />
+          <CompleteToDo detailToDoId={id} toDo={toDo} />
         ) : (
           <Button primary={"#5d5d5d"} textPrimary={"#fff"} onClick={() => {}}>
             완료됨

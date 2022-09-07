@@ -3,6 +3,7 @@ import PlainText from "@ui/typography/PlainText";
 import SubText from "@ui/typography/SubText";
 import { useRouter } from "next/router";
 import { IToDo } from "@common/types/ToDo";
+import { ICardProps } from "@ui/todo/types";
 
 export const StyledCard = styled.div<{
   isIconCard?: boolean;
@@ -28,13 +29,6 @@ export const StyledCard = styled.div<{
     box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   }
 `;
-
-interface ICardProps {
-  id: number;
-  subject: string;
-  desc: string;
-  list: any[];
-}
 
 const Card = ({ id, subject, desc, list = [], ...rest }: ICardProps) => {
   const router = useRouter();

@@ -1,6 +1,4 @@
-import { RootState } from "@store/index";
 import MakeGrid from "@ui/grid/MakeGrid";
-import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 
 import Card from "@ui/todo/Card";

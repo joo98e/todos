@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Color } from "@ui/button";
 import { CSSProperties } from "react";
+import { ITextProps } from "@ui/typography/types";
 
 const StyledSubText = styled.p<{
   fontSize?: number;
@@ -20,7 +21,6 @@ const StyledSubText = styled.p<{
     `};
 `;
 
-
 const SubText = ({
   fontSize = 12,
   children,
@@ -28,13 +28,7 @@ const SubText = ({
   style,
   oneLine = false,
   ...rest
-}: {
-  fontSize?: number;
-  oneLine?: boolean;
-  color?: Color;
-  style?: CSSProperties;
-  children: JSX.Element | string;
-}) => {
+}: ITextProps) => {
   return (
     <StyledSubText
       oneLine={oneLine}

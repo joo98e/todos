@@ -21,11 +21,15 @@ const IconButton = styled.button`
   align-items: center;
   width: 54px;
   height: 54px;
+  border: 0;
   border-radius: 50%;
   transition: background 0.3s;
+  cursor: pointer;
+  background: none;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.05);
   }
 `;
 
@@ -37,7 +41,7 @@ const Title = () => {
     <StyledTitle>
       {status && (
         <IconButton onClick={() => router.back()}>
-          <PrevSvgIcon />
+          <PrevSvgIcon width={"32px"} height={"32px"} />
         </IconButton>
       )}
       {getPageTitleByPathname(router.pathname)}

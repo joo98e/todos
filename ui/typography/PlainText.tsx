@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Color } from "@ui/button";
 import { CSSProperties } from "react";
+import { ITextProps } from "@ui/typography/types";
 
 const StyledPlainText = styled.p<{
   fontSize?: number;
@@ -20,14 +21,6 @@ const StyledPlainText = styled.p<{
     `};
 `;
 
-interface IPlainTextProps {
-  fontSize?: number;
-  oneLine?: boolean;
-  color?: Color;
-  style?: CSSProperties;
-  children: JSX.Element | string;
-}
-
 const PlainText = ({
   fontSize = 16,
   children,
@@ -35,7 +28,7 @@ const PlainText = ({
   color,
   style,
   ...rest
-}: IPlainTextProps) => {
+}: ITextProps) => {
   return (
     <StyledPlainText
       oneLine={oneLine}

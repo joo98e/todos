@@ -5,9 +5,9 @@ const initialState: IToDoListInitialState = {
   toDos: [
     {
       id: 1,
-      nickname: "A",
+      nickname: "ayaan",
       subject: "todos",
-      desc: "todo-todos",
+      desc: "refactoring",
       list: [
         {
           id: 1,
@@ -30,19 +30,22 @@ const toDoSlice = createSlice({
   name: "todo-list",
   initialState,
   reducers: {
-    addToDoList(state, action: PayloadAction<IToDo>) {
+    addToDoListAction(state, action: PayloadAction<IToDo>) {
       state.toDos.unshift(action.payload);
     },
 
-    deleteToDoList() {},
+    deleteToDoListAction() {},
 
-    addToDoDetail(state, action: PayloadAction<{ nextToDoState: IToDo[] }>) {
+    addToDoDetailAction(
+      state,
+      action: PayloadAction<{ nextToDoState: IToDo[] }>
+    ) {
       state.toDos = action.payload.nextToDoState;
     },
 
-    deleteDetailToDo() {},
+    deleteDetailToDoAction() {},
 
-    completedDetailToDo(
+    completedDetailToDoAction(
       state,
       action: PayloadAction<{ nextToDoState: IToDo[] }>
     ) {
@@ -52,10 +55,10 @@ const toDoSlice = createSlice({
 });
 
 const toDoState = toDoSlice.reducer;
-export const addToDoList = toDoSlice.actions.addToDoList;
-export const deleteToDoList = toDoSlice.actions.deleteToDoList;
-export const addToDoDetail = toDoSlice.actions.addToDoDetail;
-export const deleteDetailToDo = toDoSlice.actions.deleteDetailToDo;
-export const completedDetailToDo = toDoSlice.actions.completedDetailToDo;
+export const addToDoListAction = toDoSlice.actions.addToDoListAction;
+export const deleteToDoListAction = toDoSlice.actions.deleteToDoListAction;
+export const addToDoDetailAction = toDoSlice.actions.addToDoDetailAction;
+export const deleteDetailToDo = toDoSlice.actions.deleteDetailToDoAction;
+export const completedDetailToDo = toDoSlice.actions.completedDetailToDoAction;
 
 export default toDoState;
