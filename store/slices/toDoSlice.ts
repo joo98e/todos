@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IToDo, IToDoListInitialState } from "@common/types/ToDo";
+import { STATUS_TODO } from "../../src/common/enums/STATUS_TODO";
 
 const initialState: IToDoListInitialState = {
   toDos: [
@@ -13,13 +14,13 @@ const initialState: IToDoListInitialState = {
           id: 1,
           title: "물 주기",
           desc: "식물에 물 주기",
-          isCompleted: false,
+          isCompleted: STATUS_TODO.INCOMPLETE,
         },
         {
           id: 2,
           title: "우산 접기",
           desc: "우산 물 털고 접기",
-          isCompleted: true,
+          isCompleted: STATUS_TODO.COMPLETE,
         },
       ],
     },

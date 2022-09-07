@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@store/index";
 import { IToDo } from "@common/types/ToDo";
 import { IRowProps } from "@ui/detail/types";
+import { STATUS_TODO } from "../../src/common/enums/STATUS_TODO";
 
 const Grid = styled.div`
   display: grid;
@@ -53,7 +54,7 @@ const Row = ({ detail: { id, isCompleted, desc, title } }: IRowProps) => {
         )}
       </GridItem>
       <GridItem>
-        {!isCompleted ? (
+        {isCompleted === STATUS_TODO.INCOMPLETE ? (
           <CompleteToDo detailToDoId={id} toDo={toDo} />
         ) : (
           <Button primary={"#5d5d5d"} textPrimary={"#fff"} onClick={() => {}}>

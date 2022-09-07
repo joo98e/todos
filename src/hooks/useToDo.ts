@@ -1,18 +1,19 @@
 import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@store/index";
-import { IToDo, IToDoDetail } from "@common/types/ToDo";
+import { IToDo } from "@common/types/ToDo";
 import { IAddToDoDetailParams, ICompleteToDoDetailParams } from "@hooks/types";
 import {
   addToDoDetailAction,
   addToDoListAction,
   completedDetailToDo,
 } from "@store/slices/toDoSlice";
+import { STATUS_TODO } from "../common/enums/STATUS_TODO";
 
 const useToDo = () => {
   const dispatch = useDispatch();
-  
-  const getAllToDos =useSelector((state: RootState) => state.toDoState.toDos) 
+
+  const getAllToDos = useSelector((state: RootState) => state.toDoState.toDos);
 
   const getOneToDo = (id: number) => {
     return getAllToDos.filter((item) => item.id === id)[0];
@@ -35,7 +36,7 @@ const useToDo = () => {
       item.id === toDoId &&
         nextToDoState[idx].list.unshift({
           id: new Date().getTime(),
-          isCompleted: false,
+          isCompleted: STATUS_TODO.INCOMPLETE,
           ...data,
         });
     });
@@ -52,7 +53,7 @@ const useToDo = () => {
 
     completeToDos.list.forEach((item, idx) => {
       if (item.id === detailToDoId) {
-        completeToDos.list[idx].isCompleted = true;
+        completeToDos.list[idx].isCompleted = STATUS_TODO.COMPLETE;
       }
     });
 

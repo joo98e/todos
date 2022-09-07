@@ -7,8 +7,12 @@ import AddToDo from "@ui/detail/AddToDo";
 import FlexBox from "@ui/flex/FlexBox";
 import ErrorText from "@ui/typography/ErrorText";
 import { Divider } from "antd";
-import Button from "@ui/button";
 import useToDo from "@hooks/useToDo";
+import StyledSelect from "@ui/select/StyledSelect";
+import { useEffect, useState } from "react";
+import Option from "@ui/select/Option";
+import { IToDoDetail } from "@common/types/ToDo";
+import { STATUS_TODO } from "../../../src/common/enums/STATUS_TODO";
 
 const StyledToDoDetailBox = styled.div`
   width: 100%;
@@ -16,10 +20,29 @@ const StyledToDoDetailBox = styled.div`
 `;
 
 const DetailToDoPage = () => {
+  const [category, setCategory] = useState<STATUS_TODO>(STATUS_TODO.INCOMPLETE);
+  const [imitation, setImitation] = useState<IToDoDetail[]>([]);
   const router = useRouter();
   const toDoId = router.query.id ? +router.query.id : null;
   const { getOneToDo } = useToDo();
   const toDo = getOneToDo(toDoId);
+
+  const handleClickSetCategory = (e) => {
+    setCategory(e.target.value);
+  };
+
+  useEffect(() => {
+    const filtering = category === STATUS_TODO.ALL;
+    if (!filtering && toDo && toDo.list.length) {
+      setImitation((prev) => {
+        return toDo.list.filter((item) => {
+          return item.isCompleted === category;
+        });
+      });
+    } else {
+      setImitation(toDo.list);
+    }
+  }, [toDo, category]);
 
   return (
     <StyledToDoDetailBox>
@@ -32,14 +55,29 @@ const DetailToDoPage = () => {
             <PlainText fontSize={18}>{toDo.subject ?? " - "}</PlainText>
             <SubText fontSize={18}>{toDo.desc ?? " - "}</SubText>
           </div>
-          <AddToDo toDo={toDo} />
+          <div>
+            <AddToDo toDo={toDo} />
+            <StyledSelect
+              value={category}
+              defaultValue={STATUS_TODO.INCOMPLETE}
+              onChange={handleClickSetCategory}
+            >
+              {[
+                STATUS_TODO.ALL,
+                STATUS_TODO.COMPLETE,
+                STATUS_TODO.INCOMPLETE,
+              ].map((item, index) => {
+                return <Option key={item} label={item} value={item} />;
+              })}
+            </StyledSelect>
+          </div>
         </FlexBox>
       )}
       <Divider />
 
-      {toDo &&
-        toDo.list?.length !== 0 &&
-        toDo.list.map((item, index) => {
+      {imitation &&
+        imitation.length !== 0 &&
+        imitation.map((item, index) => {
           return <Row key={index} detail={item} />;
         })}
 
