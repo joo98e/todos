@@ -32,10 +32,12 @@ const DetailToDoPage = () => {
   };
 
   useEffect(() => {
+    if (!toDo || !toDo.list?.length) return;
+
     const filtering = category === STATUS_TODO.ALL;
-    if (!filtering && toDo && toDo.list.length) {
+    if (!filtering) {
       setImitation((prev) => {
-        return toDo.list.filter((item) => {
+        return toDo.list?.filter((item) => {
           return item.isCompleted === category;
         });
       });

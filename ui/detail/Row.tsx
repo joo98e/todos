@@ -23,6 +23,7 @@ const GridItem = styled.div``;
 const Row = ({ detail: { id, isCompleted, desc, title } }: IRowProps) => {
   const router = useRouter();
   const toDoId = router.query.id ? +router.query.id : null;
+  const completed = isCompleted === STATUS_TODO.COMPLETE;
   const toDo: IToDo = useSelector((state: RootState) => {
     return state.toDoState.toDos.filter((item) => item.id === toDoId)[0];
   });
@@ -30,7 +31,7 @@ const Row = ({ detail: { id, isCompleted, desc, title } }: IRowProps) => {
   return (
     <Grid>
       <GridItem>
-        {isCompleted ? (
+        {completed ? (
           <PlainText
             style={{ textDecoration: "line-through", color: "#777" }}
             fontSize={18}
@@ -42,7 +43,7 @@ const Row = ({ detail: { id, isCompleted, desc, title } }: IRowProps) => {
         )}
       </GridItem>
       <GridItem>
-        {isCompleted ? (
+        {completed ? (
           <SubText
             fontSize={16}
             style={{ textDecoration: "line-through", color: "#777" }}
@@ -54,7 +55,7 @@ const Row = ({ detail: { id, isCompleted, desc, title } }: IRowProps) => {
         )}
       </GridItem>
       <GridItem>
-        {isCompleted === STATUS_TODO.INCOMPLETE ? (
+        {!completed ? (
           <CompleteToDo detailToDoId={id} toDo={toDo} />
         ) : (
           <Button primary={"#5d5d5d"} textPrimary={"#fff"} onClick={() => {}}>
