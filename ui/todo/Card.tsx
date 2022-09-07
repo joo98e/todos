@@ -1,8 +1,8 @@
-import styled from '@emotion/styled';
-import { IToDo } from '@store/slices/types';
-import PlainText from '@ui/typography/PlainText';
-import SubText from '@ui/typography/SubText';
-import { useRouter } from 'next/router';
+import styled from "@emotion/styled";
+import PlainText from "@ui/typography/PlainText";
+import SubText from "@ui/typography/SubText";
+import { useRouter } from "next/router";
+import { IToDo } from "@common/types/ToDo";
 
 export const StyledCard = styled.div<{
   isIconCard?: boolean;
@@ -11,6 +11,7 @@ export const StyledCard = styled.div<{
     props.isIconCard &&
     `
     display : flex;
+    flex-direction: column;
     justify-content : center;
     align-items : center;
   `}
@@ -28,16 +29,16 @@ export const StyledCard = styled.div<{
   }
 `;
 
-const Card = ({ id, subject, desc, list = [] }: IToDo) => {
+const Card = ({ id, subject, desc, list = [], ...rest }: IToDo) => {
   const router = useRouter();
 
   const handleClickDetail = () => {
     router.push(`/detail/${id}`).then((r) => {});
   };
   return (
-    <StyledCard onClick={handleClickDetail}>
-      <PlainText oneLine={true}>{subject ?? '제목 없음'}</PlainText>
-      <SubText>{desc ?? ' - '}</SubText>
+    <StyledCard onClick={handleClickDetail} {...rest}>
+      <PlainText oneLine={true}>{subject ?? "제목 없음"}</PlainText>
+      <SubText>{desc ?? " - "}</SubText>
     </StyledCard>
   );
 };

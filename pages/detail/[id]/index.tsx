@@ -22,7 +22,7 @@ const DetailToDoPage = () => {
   const toDoId = router.query.id ? +router.query.id : null;
 
   const toDo: IToDo = useSelector((state: RootState) => {
-    return state.toDoState.todos.filter((item) => item.id === toDoId)[0];
+    return state.toDoState.toDos.filter((item) => item.id === toDoId)[0];
   });
 
   return (

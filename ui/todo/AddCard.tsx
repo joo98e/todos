@@ -91,6 +91,7 @@ const AddCard = () => {
     <>
       <StyledCard isIconCard={true} onClick={handleToggle}>
         <PlusSvgIcon />
+        추가
       </StyledCard>
 
       {visible && (

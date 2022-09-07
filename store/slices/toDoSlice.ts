@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IToDo, IToDoDetail, IToDoListInitialState } from "./types";
+import { IToDo, IToDoListInitialState } from "@common/types/ToDo";
 
 const initialState: IToDoListInitialState = {
-  todos: [
+  toDos: [
     {
       id: 1,
       nickname: "A",
@@ -31,13 +31,13 @@ const toDoSlice = createSlice({
   initialState,
   reducers: {
     addToDoList(state, action: PayloadAction<IToDo>) {
-      state.todos.unshift(action.payload);
+      state.toDos.unshift(action.payload);
     },
 
     deleteToDoList() {},
 
     addDetailToDo(state, action: PayloadAction<{ nextToDoState: IToDo[] }>) {
-      state.todos = action.payload.nextToDoState;
+      state.toDos = action.payload.nextToDoState;
     },
 
     deleteDetailToDo() {},
@@ -46,14 +46,14 @@ const toDoSlice = createSlice({
       state,
       action: PayloadAction<{ nextToDoState: IToDo[] }>
     ) {
-      state.todos = action.payload.nextToDoState;
+      state.toDos = action.payload.nextToDoState;
     },
   },
 });
 
 const toDoState = toDoSlice.reducer;
-export const addToDoList = toDoSlice.actions;
-export const deleteToDoList = toDoSlice.actions;
+export const addToDoList = toDoSlice.actions.addToDoList;
+export const deleteToDoList = toDoSlice.actions.deleteToDoList;
 export const addDetailToDo = toDoSlice.actions.addDetailToDo;
 export const deleteDetailToDo = toDoSlice.actions.deleteDetailToDo;
 export const completedDetailToDo = toDoSlice.actions.completedDetailToDo;

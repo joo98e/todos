@@ -1,5 +1,5 @@
 export interface IToDoListInitialState {
-  todos: IToDo[];
+  toDos: IToDo[];
 }
 
 export interface IToDo {

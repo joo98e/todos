@@ -7,12 +7,18 @@ export default {
   clearMocks: true,
   collectCoverage: false,
   coverageDirectory: "coverage",
+  testEnvironment: "jest-environment-jsdom",
   // estEnvironment: "node", => error
   verbose: true,
-  moduleDirectories: ["node_modules", __dirname, "src"],
+  moduleDirectories: ["node_modules", __dirname, "src", "fixtures"],
   moduleNameMapper: {
     // "^@(.*)/$": "<rootDir>/$1", => error
     "^@utils/(.*)$": "<rootDir>/src/utils/$1", // example, @utils/getPath : "<rootDir>/src/utils/getPath"
+    "^@testing/fixtures/(.*)$": "<rootDir>/fixtures/$1",
+    "^@store/slices/(.*)$": "<rootDir>/store/slices/$1",
+    "^@store/(.*)$": "<rootDir>/store/$1",
+    "^@pages/(.*)$": "<rootDir>/pages/$1",
+    "^@ui/(.*)$": "<rootDir>/ui/$1",
   },
   testMatch: [
     "<rootDir>/**/*.test.(js|jsx|ts|tsx)",

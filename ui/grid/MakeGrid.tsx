@@ -13,22 +13,16 @@ const Grid = styled.div<{
   gap: ${(props) => `${props.gap}px`};
 `;
 
-const MakeGrid = ({ column, fr = "1fr", gap = 8, items }: IMakeGridProps) => {
+const MakeGrid = ({
+  column,
+  fr = "1fr",
+  gap = 8,
+  children,
+  ...rest
+}: IMakeGridProps) => {
   return (
-    <Grid column={column} gap={gap} fr={fr}>
-      {items.map((item, idx) => {
-        return (
-          <Card
-            key={idx}
-            id={item.id}
-            nickname={item.nickname}
-            subject={item.subject}
-            desc={item.desc}
-            list={item.list}
-          />
-        );
-      })}
-      <AddCard />
+    <Grid column={column} gap={gap} fr={fr} {...rest}>
+      {children}
     </Grid>
   );
 };

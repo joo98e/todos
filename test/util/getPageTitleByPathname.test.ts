@@ -2,9 +2,9 @@ import getPageTitleByPathname from "@utils/getPageTitleByPathname";
 
 describe("getPageTitleByPathname", () => {
   it("getPageTitleByPathname", () => {
-    const reg = new RegExp(/ToDos|Detail Page/);
+    const reg = new RegExp(/To Do App|Detail Page/);
 
-    expect(getPageTitleByPathname("/")).toBe("ToDos");
+    expect(getPageTitleByPathname("/")).toBe("To Do App");
     expect(getPageTitleByPathname("/")).toMatch(reg);
 
     // 비어있지 않음

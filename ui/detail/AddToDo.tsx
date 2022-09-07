@@ -65,7 +65,7 @@ const AddToDo = ({ toDoId, toDo }: { toDoId: number; toDo: IToDo }) => {
   const [visible, setVisible] = useState(false);
 
   // TODO 이름 바꾸기 (todo.todo)
-  const allToDos = useSelector((state: RootState) => state.toDoState.todos);
+  const allToDos = useSelector((state: RootState) => state.toDoState.toDos);
 
   const dispatch = useDispatch();
   const {
