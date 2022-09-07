@@ -12,7 +12,6 @@ import { log } from "util";
 import { RootState } from "@store/index";
 import { IToDo } from "@common/types/ToDo";
 import useToDo from "../../src/hooks/useToDo";
-import { addToDoDetail } from "@store/slices/toDoSlice";
 import { IAddToDoProps } from "@ui/detail/types";
 
 const StyledBackDrop = styled.div`
@@ -65,7 +64,7 @@ interface IForm {
 
 const AddToDo = ({ toDo }: IAddToDoProps) => {
   const [visible, setVisible] = useState(false);
-  const { addDetail } = useToDo();
+  const { addDetailToDo } = useToDo();
 
   const dispatch = useDispatch();
   const {
@@ -80,7 +79,7 @@ const AddToDo = ({ toDo }: IAddToDoProps) => {
       return false;
     }
 
-    addDetail({
+    addDetailToDo({
       id: toDo.id,
       data: {
         ...data,

@@ -1,36 +1,22 @@
+import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@store/index";
 import { IToDo, IToDoDetail } from "@common/types/ToDo";
+import { IAddToDoDetailParams, ICompleteToDoDetailParams } from "@hooks/types";
 import {
   addToDoDetailAction,
   addToDoListAction,
   completedDetailToDo,
 } from "@store/slices/toDoSlice";
-import _ from "lodash";
-
-interface IToDoDetailDispatchProps {
-  id: number;
-}
-
-interface IAddToDoDetailParams extends IToDoDetailDispatchProps {
-  data: {
-    title: string;
-    desc: string;
-  };
-}
-
-interface ICompleteToDoDetailParams extends IToDoDetailDispatchProps {
-  detailToDoId: number;
-}
-
-interface IUseToDoParams {}
 
 const useToDo = () => {
   const dispatch = useDispatch();
-  const allToDos = useSelector((state: RootState) => state.toDoState.toDos);
 
+  const getAllToDos = () => {
+    return useSelector((state: RootState) => state.toDoState.toDos);
+  };
   const getOneToDo = (id: number) => {
-    return allToDos.filter((item) => item.id === id)[0];
+    return getAllToDos().filter((item) => item.id === id)[0];
   };
 
   const addToDoList = (data: IToDo) => {
@@ -43,8 +29,8 @@ const useToDo = () => {
     );
   };
 
-  const addDetail = ({ id: toDoId, data }: IAddToDoDetailParams) => {
-    const nextToDoState: IToDo[] = _.cloneDeep(allToDos);
+  const addDetailToDo = ({ id: toDoId, data }: IAddToDoDetailParams) => {
+    const nextToDoState: IToDo[] = _.cloneDeep(getAllToDos());
 
     nextToDoState.forEach((item, idx: number) => {
       item.id === toDoId &&
@@ -61,7 +47,7 @@ const useToDo = () => {
     id: toDoId,
     detailToDoId,
   }: ICompleteToDoDetailParams) => {
-    const origin: IToDo[] = _.cloneDeep(allToDos);
+    const origin: IToDo[] = _.cloneDeep(getAllToDos());
     let completeToDos: IToDo = origin.filter((item) => item.id === toDoId)[0];
     let anotherToDos: IToDo[] = origin.filter((item) => item.id !== toDoId);
 
@@ -79,10 +65,10 @@ const useToDo = () => {
   };
 
   return {
-    allToDos,
+    getAllToDos,
     getOneToDo,
     addToDoList,
-    addDetail,
+    addDetailToDo,
     completeDetail,
   };
 };

@@ -10,12 +10,12 @@ const Wrapper = styled.div`
 `;
 
 const Home = () => {
-  const { allToDos } = useToDo();
+  const { getAllToDos } = useToDo();
 
   return (
     <Wrapper>
       <MakeGrid column={3} gap={24}>
-        {allToDos.map((item, idx) => {
+        {getAllToDos().map((item, idx) => {
           return (
             <Card
               key={idx}

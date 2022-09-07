@@ -11,7 +11,7 @@ import useToDo from "@hooks/useToDo";
 import { ICompleteToDoProps } from "@ui/detail/types";
 
 const CompleteToDo = ({ detailToDoId, toDo }: ICompleteToDoProps) => {
-  const { allToDos, completeDetail } = useToDo();
+  const { completeDetail } = useToDo();
   const [visible, setVisible] = useState(false);
   const onComplete = () => {
     completeDetail({
