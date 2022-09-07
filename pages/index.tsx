@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <Wrapper>
       <MakeGrid column={3} gap={24}>
-        {getAllToDos().map((item, idx) => {
+        {getAllToDos.map((item, idx) => {
           return (
             <Card
               key={idx}

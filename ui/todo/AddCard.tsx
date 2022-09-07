@@ -4,11 +4,11 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { addToDoList } from "@store/slices/toDoSlice";
 import ErrorText from "@ui/typography/ErrorText";
 import Button from "@ui/button";
 import PlainText from "@ui/typography/PlainText";
 import FlexBox from "@ui/flex/FlexBox";
+import useToDo from "@hooks/useToDo";
 
 const StyledBackDrop = styled.div`
   position: fixed;
@@ -63,6 +63,7 @@ interface IForm {
 const AddCard = () => {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
+  const { addToDoList } = useToDo();
 
   const {
     register,
@@ -72,13 +73,11 @@ const AddCard = () => {
   } = useForm<IForm>();
 
   const onSubmit = (data: IForm) => {
-    dispatch(
-      addToDoList({
-        ...data,
-        id: new Date().getTime(),
-        list: [],
-      })
-    );
+    addToDoList({
+      ...data,
+      id: new Date().getTime(),
+      list: [],
+    });
     handleToggle();
   };
 
@@ -91,7 +90,7 @@ const AddCard = () => {
     <>
       <StyledCard isIconCard={true} onClick={handleToggle}>
         <PlusSvgIcon width={"32px"} height={"32px"} />
-        추가
+        <p>추가하기</p>
       </StyledCard>
 
       {visible && (

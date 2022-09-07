@@ -11,12 +11,11 @@ import {
 
 const useToDo = () => {
   const dispatch = useDispatch();
+  
+  const getAllToDos =useSelector((state: RootState) => state.toDoState.toDos) 
 
-  const getAllToDos = () => {
-    return useSelector((state: RootState) => state.toDoState.toDos);
-  };
   const getOneToDo = (id: number) => {
-    return getAllToDos().filter((item) => item.id === id)[0];
+    return getAllToDos.filter((item) => item.id === id)[0];
   };
 
   const addToDoList = (data: IToDo) => {
@@ -30,7 +29,7 @@ const useToDo = () => {
   };
 
   const addDetailToDo = ({ id: toDoId, data }: IAddToDoDetailParams) => {
-    const nextToDoState: IToDo[] = _.cloneDeep(getAllToDos());
+    const nextToDoState: IToDo[] = _.cloneDeep(getAllToDos);
 
     nextToDoState.forEach((item, idx: number) => {
       item.id === toDoId &&
@@ -47,7 +46,7 @@ const useToDo = () => {
     id: toDoId,
     detailToDoId,
   }: ICompleteToDoDetailParams) => {
-    const origin: IToDo[] = _.cloneDeep(getAllToDos());
+    const origin: IToDo[] = _.cloneDeep(getAllToDos);
     let completeToDos: IToDo = origin.filter((item) => item.id === toDoId)[0];
     let anotherToDos: IToDo[] = origin.filter((item) => item.id !== toDoId);
 

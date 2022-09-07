@@ -17,7 +17,7 @@ describe("UI 컴포넌트 - Add Card", function () {
 
   it("Card 등록", function () {
     fireEvent(
-      getByText(container, "추가"),
+      getByText(container, "추가하기"),
       new MouseEvent("click", {
         bubbles: false,
       })
