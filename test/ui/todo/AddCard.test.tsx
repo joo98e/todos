@@ -1,25 +1,42 @@
-import { beforeEach, describe } from "@jest/globals";
+import { afterEach, beforeEach, describe } from "@jest/globals";
 import AddCard from "@ui/todo/AddCard";
 import useReduxProvider from "@testing/fixtures/useReduxProvider";
 import { getByText } from "@testing-library/dom";
-import { act, fireEvent, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, screen } from "@testing-library/react";
 import { useDispatch } from "react-redux";
+import useToDo from "@hooks/useToDo";
 
+jest.mock("@hooks/useToDo");
 // jest.mock("react-redux");
 // jest.mock("react-hook-form");
 
 describe("AddCard Dispatch 호출 확인", function () {
-  let container;
+  let root;
+  let useToDo;
 
   beforeEach(() => {
-    container = useReduxProvider(<AddCard />, {});
+    root = useReduxProvider(<AddCard />, {});
+    useToDo.mockImplementationOnce(() => {
+      return {
+        addToDoList: function () {},
+      };
+    });
 
     // 추가하기 버튼을 찾아 클릭
-    const button = container.getByText("추가하기");
+    const button = root.getByText("추가하기");
     fireEvent.click(button);
   });
 
+  afterEach(cleanup);
+
   it("폼이 입력되지 않은 채 Submit", async () => {
+    const { addToDoList } = useToDo();
+    addToDoList.mockImplementationOnce(() => {});
+
+    const handleSubmit = jest.fn(() => {
+      return null;
+    });
+
     const nicknameInput = screen.getByPlaceholderText("닉네임을 입력하세요.");
     const subjectInput = screen.getByPlaceholderText("제목을 입력하세요.");
     const descInput = screen.getByPlaceholderText("내용을 입력하세요.");
@@ -31,8 +48,10 @@ describe("AddCard Dispatch 호출 확인", function () {
     expect(subjectInput).toHaveValue("");
     expect(descInput).toHaveValue("");
 
+    screen.getByText("추가").onclick = handleSubmit;
+    root.baseElement.querySelector("form").onSubmit = handleSubmit;
     await act(() => {
-      fireEvent.submit(screen.getByText("추가"));
+      fireEvent.click(screen.getByText("추가"));
     });
   });
 
@@ -62,7 +81,7 @@ describe("AddCard Dispatch 호출 확인", function () {
     fireEvent.change(descInput, { target: { value: "abcdefg" } });
     expect(descInput).toHaveValue("abcdefg");
 
-    const submitButton = container.getByText("추가");
+    const submitButton = root.getByText("추가");
     /**
      * React state Action Wrapping
      */
