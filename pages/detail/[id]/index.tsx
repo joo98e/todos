@@ -20,7 +20,7 @@ const StyledToDoDetailBox = styled.div`
 `;
 
 const DetailToDoPage = () => {
-  const [category, setCategory] = useState<STATUS_TODO>(STATUS_TODO.INCOMPLETE);
+  const [category, setCategory] = useState<STATUS_TODO>(STATUS_TODO.ALL);
   const [imitation, setImitation] = useState<IToDoDetail[]>([]);
   const router = useRouter();
   const toDoId = router.query.id ? +router.query.id : null;
@@ -51,24 +51,14 @@ const DetailToDoPage = () => {
       {toDo && (
         <FlexBox justifyContent={"space-between"} alignItems={"center"}>
           <div>
-            <PlainText fontSize={24}>
-              {`${toDo.nickname}'s To Do` ?? " - "}
-            </PlainText>
+            <PlainText fontSize={24}>{`${toDo.nickname}'s To Do` ?? " - "}</PlainText>
             <PlainText fontSize={18}>{toDo.subject ?? " - "}</PlainText>
             <SubText fontSize={18}>{toDo.desc ?? " - "}</SubText>
           </div>
           <div>
             <AddToDo toDo={toDo} />
-            <StyledSelect
-              value={category}
-              defaultValue={STATUS_TODO.INCOMPLETE}
-              onChange={handleClickSetCategory}
-            >
-              {[
-                STATUS_TODO.ALL,
-                STATUS_TODO.COMPLETE,
-                STATUS_TODO.INCOMPLETE,
-              ].map((item, index) => {
+            <StyledSelect value={category} defaultValue={STATUS_TODO.INCOMPLETE} onChange={handleClickSetCategory}>
+              {[STATUS_TODO.ALL, STATUS_TODO.COMPLETE, STATUS_TODO.INCOMPLETE].map((item, index) => {
                 return <Option key={item} label={item} value={item} />;
               })}
             </StyledSelect>
@@ -83,9 +73,7 @@ const DetailToDoPage = () => {
           return <Row key={index} detail={item} />;
         })}
 
-      {!toDoId && !toDo && (
-        <ErrorText fontSize={24}>To Do를 찾을 수 없습니다. </ErrorText>
-      )}
+      {!toDoId && !toDo && <ErrorText fontSize={24}>To Do를 찾을 수 없습니다. </ErrorText>}
     </StyledToDoDetailBox>
   );
 };

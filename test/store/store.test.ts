@@ -12,7 +12,7 @@ const middlewares = [];
 const mockStore = configureStore(middlewares);
 export const store = mockStore({});
 
-describe(`리덕스 스토어`, function () {
+describe(`[리덕스] 스토어`, function () {
   describe("toDoState", () => {
     const toDo = {
       id: 2,

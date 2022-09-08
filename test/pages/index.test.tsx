@@ -8,7 +8,7 @@ import exp from "constants";
 import { afterEach, beforeEach } from "@jest/globals";
 import useTestContainer from "@testing/fixtures/useTestContainer";
 
-describe(`인덱스 페이지`, function () {
+describe(`[pages]`, function () {
   const toDoList = [
     {
       id: 1,
@@ -57,16 +57,7 @@ describe(`인덱스 페이지`, function () {
     container = useTestContainer(
       <MakeGrid data-testid={"CardWrapper"} column={3} gap={24}>
         {toDoList.map((item, idx) => {
-          return (
-            <Card
-              key={idx}
-              id={item.id}
-              nickname={item.nickname}
-              subject={item.subject}
-              desc={item.desc}
-              list={item.list}
-            />
-          );
+          return <Card key={idx} id={item.id} nickname={item.nickname} subject={item.subject} desc={item.desc} list={item.list} />;
         })}
       </MakeGrid>
     );
@@ -76,7 +67,7 @@ describe(`인덱스 페이지`, function () {
     container = null;
   });
 
-  describe(`pages route : "/"`, function () {
+  describe(`route : "/"`, function () {
     it("투두 리스트를 가지고 있으면 투두 리스트를 반환한다.", function () {
       expect(container).toHaveTextContent("todo-todos");
     });
@@ -89,24 +80,12 @@ describe(`인덱스 페이지`, function () {
       const anotherContainer = useTestContainer(
         <MakeGrid data-testid={"CardWrapper"} column={3} gap={24}>
           {[].map((item, idx) => {
-            return (
-              <Card
-                key={idx}
-                id={item.id}
-                nickname={item.nickname}
-                subject={item.subject}
-                desc={item.desc}
-                list={item.list}
-              />
-            );
+            return <Card key={idx} id={item.id} nickname={item.nickname} subject={item.subject} desc={item.desc} list={item.list} />;
           })}
         </MakeGrid>
       );
 
-      expect(
-        anotherContainer.querySelector('*[data-testid="CardWrapper"]')
-          .childNodes.length
-      ).toEqual(0);
+      expect(anotherContainer.querySelector('*[data-testid="CardWrapper"]').children.length).toEqual(0);
     });
   });
 });
