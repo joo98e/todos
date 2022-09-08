@@ -1,9 +1,9 @@
 import configureStore from "redux-mock-store";
-import { addToDoList } from "@store/slices/toDoSlice";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { IToDo } from "@common/types/ToDo";
+import { IToDo } from "@store/slices/types/ToDo";
 import { beforeEach } from "@jest/globals";
-// jest.mock("useToDo");
+import useToDo from "@hooks/useToDo";
+import { addToDoListAction } from "@store/slices/toDoSlice";
 
 /**
  * 공통
@@ -11,8 +11,6 @@ import { beforeEach } from "@jest/globals";
 const middlewares = [];
 const mockStore = configureStore(middlewares);
 export const store = mockStore({});
-
-const addTodo = () => ({ type: "ADD_TODO" });
 
 describe(`리덕스 스토어`, function () {
   describe("toDoState", () => {
@@ -23,8 +21,7 @@ describe(`리덕스 스토어`, function () {
       desc: "설명란입니다.",
       list: [],
     };
-    store.dispatch(addToDoList(toDo));
-
+    store.dispatch(addToDoListAction(toDo));
     const actions: PayloadAction<IToDo>[] = store.getActions();
 
     describe("addToDoList 액션 테스트", () => {

@@ -1,4 +1,4 @@
-import { IToDo, IToDoDetail } from "@common/types/ToDo";
+import { IToDo, IToDoDetail } from "@store/slices/types/ToDo";
 
 export interface ICompleteToDoProps {
   toDo: IToDo;

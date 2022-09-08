@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
-import { ISVGProps } from "@ui/svg/types";
+import { ISvgProps } from "@ui/svg/types";
 
-export const PlusSvgIcon = ({ width, height, style, ...rest }: ISVGProps) => {
+export const PlusSvgIcon = ({ width, height, style, ...rest }: ISvgProps) => {
   return (
     <svg
       width={width}
@@ -21,7 +21,7 @@ export const PlusSvgIcon = ({ width, height, style, ...rest }: ISVGProps) => {
   );
 };
 
-export const PrevSvgIcon = ({ width, height, style, ...rest }: ISVGProps) => {
+export const PrevSvgIcon = ({ width, height, style, ...rest }: ISvgProps) => {
   return (
     <svg
       width={width}

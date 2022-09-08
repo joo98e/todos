@@ -1,13 +1,13 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Color } from "@ui/button";
 import { CSSProperties } from "react";
 import { ITextProps } from "@ui/typography/types";
+import {Color} from "@ui/button/types";
 
 const StyledSubText = styled.p<{
   fontSize?: number;
   oneLine?: boolean;
-  color?: Color;
+  color?: Color
 }>`
   font-size: ${(props) => props.fontSize}px;
   color: ${(props) => props.color ?? "#777777"};

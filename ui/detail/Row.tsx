@@ -7,9 +7,9 @@ import CompleteToDo from "./CompleteToDo";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@store/index";
-import { IToDo } from "@common/types/ToDo";
+import { IToDo } from "@store/slices/types/ToDo";
 import { IRowProps } from "@ui/detail/types";
-import { STATUS_TODO } from "../../src/common/enums/STATUS_TODO";
+import { STATUS_TODO } from "../../store/slices/enums/STATUS_TODO";
 
 const Grid = styled.div`
   display: grid;

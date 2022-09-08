@@ -19,6 +19,7 @@ export default {
     "^@store/(.*)$": "<rootDir>/store/$1",
     "^@pages/(.*)$": "<rootDir>/pages/$1",
     "^@ui/(.*)$": "<rootDir>/ui/$1",
+    "^@hooks/(.*)$": "<rootDir>/src/hooks/$1",
   },
   testMatch: [
     "<rootDir>/**/*.test.(js|jsx|ts|tsx)",

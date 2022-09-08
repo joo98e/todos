@@ -11,8 +11,8 @@ import useToDo from "@hooks/useToDo";
 import StyledSelect from "@ui/select/StyledSelect";
 import { useEffect, useState } from "react";
 import Option from "@ui/select/Option";
-import { IToDoDetail } from "@common/types/ToDo";
-import { STATUS_TODO } from "../../../src/common/enums/STATUS_TODO";
+import { IToDoDetail } from "@store/slices/types/ToDo";
+import { STATUS_TODO } from "../../../store/slices/enums/STATUS_TODO";
 
 const StyledToDoDetailBox = styled.div`
   width: 100%;

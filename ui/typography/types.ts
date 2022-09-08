@@ -1,4 +1,4 @@
-import { Color } from "@ui/button";
+import { Color } from "@ui/button/types";
 import { CSSProperties } from "react";
 
 export interface ITextProps {

@@ -10,7 +10,7 @@ import FlexBox from "@ui/flex/FlexBox";
 import { PlusSvgIcon } from "@ui/svg";
 import { log } from "util";
 import { RootState } from "@store/index";
-import { IToDo } from "@common/types/ToDo";
+import { IToDo } from "@store/slices/types/ToDo";
 import useToDo from "../../src/hooks/useToDo";
 import { IAddToDoProps } from "@ui/detail/types";
 

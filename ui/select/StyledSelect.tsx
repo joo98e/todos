@@ -1,4 +1,3 @@
-import { STATUS_TODO } from "@pages/detail/[id]";
 import Option from "@ui/select/Option";
 import styled from "@emotion/styled";
 

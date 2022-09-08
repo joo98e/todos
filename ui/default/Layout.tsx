@@ -1,5 +1,6 @@
 import Title from "./Title";
 import styled from "@emotion/styled";
+import useMediaQuery from "@hooks/useMediaQuery";
 
 const Wrapper = styled.div`
   display: grid;
@@ -8,6 +9,12 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding-top: 24px;
   padding-bottom: 24px;
+
+  @media (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+  }
 `;
 const Children = styled.div``;
 const Layout = ({ children }) => {

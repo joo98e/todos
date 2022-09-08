@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
-  newStore?: typeof store;
+  mockStore?: typeof store;
 }
 
 const useReduxProvider = (
@@ -19,7 +19,7 @@ const useReduxProvider = (
         toDos: [],
       },
     },
-    newStore = configureStore({
+    mockStore = configureStore({
       reducer: { toDoState },
       preloadedState,
     }),
@@ -27,7 +27,7 @@ const useReduxProvider = (
   }: ExtendedRenderOptions
 ) => {
   function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
-    return <Provider store={newStore}>{children}</Provider>;
+    return <Provider store={mockStore}>{children}</Provider>;
   }
 
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };

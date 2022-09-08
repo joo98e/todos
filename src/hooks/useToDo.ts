@@ -1,20 +1,19 @@
 import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@store/index";
-import { IToDo } from "@common/types/ToDo";
+import { IToDo } from "@store/slices/types/ToDo";
 import { IAddToDoDetailParams, ICompleteToDoDetailParams } from "@hooks/types";
 import {
-  addToDoDetailAction,
+  addDetailToDoAction,
   addToDoListAction,
-  completedDetailToDo,
+  completedDetailToDoAction,
 } from "@store/slices/toDoSlice";
-import { STATUS_TODO } from "../common/enums/STATUS_TODO";
+import { STATUS_TODO } from "../../store/slices/enums/STATUS_TODO";
 
 const useToDo = () => {
   const dispatch = useDispatch();
 
   const getAllToDos = useSelector((state: RootState) => state.toDoState.toDos);
-
   const getOneToDo = (id: number) => {
     return getAllToDos.filter((item) => item.id === id)[0];
   };
@@ -40,7 +39,7 @@ const useToDo = () => {
           ...data,
         });
     });
-    dispatch(addToDoDetailAction({ nextToDoState }));
+    dispatch(addDetailToDoAction({ nextToDoState }));
   };
 
   const completeDetail = ({
@@ -48,18 +47,19 @@ const useToDo = () => {
     detailToDoId,
   }: ICompleteToDoDetailParams) => {
     const origin: IToDo[] = _.cloneDeep(getAllToDos);
-    let completeToDos: IToDo = origin.filter((item) => item.id === toDoId)[0];
+
+    let completeToDo: IToDo = origin.filter((item) => item.id === toDoId)[0];
     let anotherToDos: IToDo[] = origin.filter((item) => item.id !== toDoId);
 
-    completeToDos.list.forEach((item, idx) => {
+    completeToDo.list.forEach((item, idx) => {
       if (item.id === detailToDoId) {
-        completeToDos.list[idx].isCompleted = STATUS_TODO.COMPLETE;
+        completeToDo.list[idx].isCompleted = STATUS_TODO.COMPLETE;
       }
     });
 
     dispatch(
-      completedDetailToDo({
-        nextToDoState: anotherToDos.concat(completeToDos),
+      completedDetailToDoAction({
+        nextToDoState: anotherToDos.concat(completeToDo),
       })
     );
   };

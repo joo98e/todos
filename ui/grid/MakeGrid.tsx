@@ -1,6 +1,6 @@
 import AddCard from "@ui/todo/AddCard";
 import { IMakeGridProps } from "./types";
-import styled from "@emotion/styled";
+import styled, { CreateStyled } from "@emotion/styled";
 import Card from "@ui/todo/Card";
 
 const Grid = styled.div<{
@@ -10,7 +10,7 @@ const Grid = styled.div<{
 }>`
   display: grid;
   grid-template-columns: ${(props) => `repeat(${props.column}, ${props.fr})`};
-  gap: ${(props) => `${props.gap}px`};
+  grid-gap: ${(props) => `${props.gap}px`};
 `;
 
 const MakeGrid = ({

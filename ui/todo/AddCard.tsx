@@ -1,5 +1,4 @@
 import { PlusSvgIcon } from "@ui/svg";
-import { StyledCard } from "@ui/todo/Card";
 import { useState } from "react";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
@@ -9,6 +8,31 @@ import Button from "@ui/button";
 import PlainText from "@ui/typography/PlainText";
 import FlexBox from "@ui/flex/FlexBox";
 import useToDo from "@hooks/useToDo";
+
+export const StyledCard = styled.div<{
+  isIconCard?: boolean;
+}>`
+  ${(props) =>
+    props.isIconCard &&
+    `
+    display : flex;
+    flex-direction: column;
+    justify-content : center;
+    align-items : center;
+  `}
+  min-width: 240px;
+  height: 180px;
+  padding: 8px;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  }
+`;
 
 const StyledBackDrop = styled.div`
   position: fixed;
@@ -62,7 +86,6 @@ interface IForm {
 
 const AddCard = () => {
   const [visible, setVisible] = useState(false);
-  const dispatch = useDispatch();
   const { addToDoList } = useToDo();
 
   const {
@@ -78,7 +101,7 @@ const AddCard = () => {
       id: new Date().getTime(),
       list: [],
     });
-    handleToggle();
+    handleToggle();k
   };
 
   const handleToggle = () => {
@@ -90,7 +113,7 @@ const AddCard = () => {
     <>
       <StyledCard isIconCard={true} onClick={handleToggle}>
         <PlusSvgIcon width={"32px"} height={"32px"} />
-        <p>추가하기</p>
+        추가하기
       </StyledCard>
 
       {visible && (
@@ -140,5 +163,6 @@ const AddCard = () => {
     </>
   );
 };
+
 
 export default AddCard;

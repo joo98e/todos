@@ -1,8 +1,8 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Color } from "@ui/button";
 import { CSSProperties } from "react";
 import { ITextProps } from "@ui/typography/types";
+import { Color } from "@ui/button/types";
 
 const StyledErrorText = styled.p<{
   fontSize?: number;

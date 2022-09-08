@@ -22,7 +22,6 @@
       "@utils/*": ["src/utils/*"],
       "@ui/*": ["ui/*"],
       "@store/*": ["store/*"],
-      "@common/types/*": ["src/common/types/*"],
       "@testing/mocks/*": ["__mocks__/*"],
       "@testing/fixtures/*": ["fixtures/*"]
     }
