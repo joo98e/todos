@@ -8,6 +8,7 @@ import Button from '@ui/button'
 import PlainText from '@ui/typography/PlainText'
 import FlexBox from '@ui/flex/FlexBox'
 import useToDo from '@hooks/useToDo'
+import Dialog from '@ui/dialog/Dialog'
 
 export const StyledCard = styled.div<{
   isIconCard?: boolean
@@ -32,15 +33,6 @@ export const StyledCard = styled.div<{
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   }
-`
-
-const StyledBackDrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.3);
 `
 
 const StyledGenerateBox = styled.div`
@@ -109,6 +101,12 @@ const AddCard = () => {
     reset()
   }
 
+  /**
+   * Alert.tsx > isVisible, setOpen close
+   *
+   * children
+   */
+
   return (
     <>
       <StyledCard isIconCard={true} onClick={handleToggle}>
@@ -116,9 +114,8 @@ const AddCard = () => {
         추가하기
       </StyledCard>
 
-      {visible && (
+      <Dialog isVisible={visible} onClose={handleToggle}>
         <>
-          <StyledBackDrop onClick={handleToggle} />
           <StyledGenerateBox>
             <form onSubmit={handleSubmit(onSubmit)}>
               <PlainText fontSize={24} color="#7b68ee">
@@ -151,7 +148,7 @@ const AddCard = () => {
             </form>
           </StyledGenerateBox>
         </>
-      )}
+      </Dialog>
     </>
   )
 }
