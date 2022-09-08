@@ -101,12 +101,6 @@ const AddCard = () => {
     reset()
   }
 
-  /**
-   * Alert.tsx > isVisible, setOpen close
-   *
-   * children
-   */
-
   return (
     <>
       <StyledCard isIconCard={true} onClick={handleToggle}>
