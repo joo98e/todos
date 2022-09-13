@@ -1,7 +1,6 @@
 import { IToDo, IToDoDetail } from "@store/slices/types/ToDo";
 
 export interface ICompleteToDoProps {
-  toDo: IToDo;
   detailToDoId: number;
 }
 

@@ -6,17 +6,36 @@ import useToDo from "@hooks/useToDo";
 import { addDetailToDoAction, addToDoListAction, completedDetailToDoAction, deleteToDoListAction } from "@store/slices/toDoSlice";
 import { STATUS_TODO } from "@store/slices/enums/STATUS_TODO";
 import { cleanup } from "@testing-library/react";
-
-/**
- * 공통
- */
 const middlewares = [];
 const mockStore = configureStore(middlewares);
-
+const initialState = {
+  toDos: [
+    {
+      id: 1,
+      nickname: "Ayaan",
+      subject: "todos",
+      desc: "refactoring",
+      list: [
+        {
+          id: 1,
+          title: "물 주기",
+          desc: "식물에 물 주기",
+          isCompleted: STATUS_TODO.INCOMPLETE,
+        },
+        {
+          id: 2,
+          title: "우산 접기",
+          desc: "우산 물 털고 접기",
+          isCompleted: STATUS_TODO.COMPLETE,
+        },
+      ],
+    },
+  ],
+};
 describe("[리덕스] 스토어 ", () => {
   describe("[toDoState]", () => {
     it("action - addToDoListAction", () => {
-      const store = mockStore();
+      const store = mockStore(initialState);
       const toDo = {
         id: 2,
         nickname: "액션 테스트",
@@ -31,30 +50,7 @@ describe("[리덕스] 스토어 ", () => {
     });
 
     it("action - addDetailToDoAction", () => {
-      const store = mockStore({
-        toDos: [
-          {
-            id: 1,
-            nickname: "Ayaan",
-            subject: "todos",
-            desc: "refactoring",
-            list: [
-              {
-                id: 1,
-                title: "물 주기",
-                desc: "식물에 물 주기",
-                isCompleted: STATUS_TODO.INCOMPLETE,
-              },
-              {
-                id: 2,
-                title: "우산 접기",
-                desc: "우산 물 털고 접기",
-                isCompleted: STATUS_TODO.COMPLETE,
-              },
-            ],
-          },
-        ],
-      });
+      const store = mockStore(initialState);
       const nextToDoState = [
         {
           id: 1,
@@ -90,31 +86,7 @@ describe("[리덕스] 스토어 ", () => {
     });
 
     it("action - completedDetailToDoAction", () => {
-      const store = mockStore({
-        toDos: [
-          {
-            id: 1,
-            nickname: "Ayaan",
-            subject: "todos",
-            desc: "refactoring",
-            list: [
-              {
-                id: 3,
-                title: "물 주기",
-                desc: "식물에 물 주기",
-                // expect point
-                isCompleted: STATUS_TODO.INCOMPLETE,
-              },
-              {
-                id: 4,
-                title: "우산 접기",
-                desc: "우산 물 털고 접기",
-                isCompleted: STATUS_TODO.COMPLETE,
-              },
-            ],
-          },
-        ],
-      });
+      const store = mockStore(initialState);
       const nextToDoState = [
         {
           id: 1,

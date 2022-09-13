@@ -68,15 +68,15 @@ describe(`[pages]`, function () {
   });
 
   describe(`route : "/"`, function () {
-    it("투두 리스트를 가지고 있으면 투두 리스트를 반환한다.", function () {
+    it("투두 리스트를 가지고 있으면 투두 리스트를 반환", function () {
       expect(container).toHaveTextContent("todo-todos");
     });
 
-    it("Map 함수를 실행한 만큼의 카드 개수가 존재한다. ", function () {
+    it("Map 함수를 실행한 만큼의 카드 개수가 존재", function () {
       expect(screen.getByTestId("CardWrapper").children.length).toEqual(2);
     });
 
-    it("빈 배열이라면, 카드 컴포넌트가 없어야 한다. ", function () {
+    it("빈 배열이라면, 카드 컴포넌트가 없음", function () {
       const anotherContainer = useCustomProvider(
         <MakeGrid data-testid={"CardWrapper"} column={3} gap={24}>
           {[].map((item, idx) => {

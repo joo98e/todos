@@ -15,7 +15,7 @@ describe("UI 컴포넌트 - Dialog test <AddCard />", () => {
     container = useReduxProvider(<AddCard />, {});
   });
 
-  it("버튼을 누르면 children이 담긴 팝업이 열려야 한다.", () => {
+  it("버튼을 누르면 children이 담긴 팝업이 열림", () => {
     const addButton = container.getByText("추가하기");
     fireEvent.click(addButton);
 

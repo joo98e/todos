@@ -2,7 +2,7 @@ import getPageTitleByPathname from "@utils/getPageTitleByPathname";
 
 describe("[기능]util func", () => {
   describe("getPageTitleByPathname", () => {
-    it("현재 라우트를 전달 받으면, 타이틀을 리턴한다.", () => {
+    it("현재 라우트를 전달 받으면, 타이틀을 리턴", () => {
       const reg = new RegExp(/To Do App|Detail Page/);
 
       expect(getPageTitleByPathname("/")).toBe("To Do App");

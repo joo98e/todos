@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 import PlainText from "@ui/typography/PlainText";
 import SubText from "@ui/typography/SubText";
-import Row from "@ui/detail/Row";
+import ToDoDetailRow from "@ui/detail/ToDoDetailRow";
 import AddToDo from "@ui/detail/AddToDo";
 import FlexBox from "@ui/flex/FlexBox";
 import ErrorText from "@ui/typography/ErrorText";
@@ -34,8 +34,8 @@ const DetailToDoPage = () => {
   useEffect(() => {
     if (!toDo || !toDo.list?.length) return;
 
-    const filtering = category === STATUS_TODO.ALL;
-    if (!filtering) {
+    const filtering = category !== STATUS_TODO.ALL;
+    if (filtering) {
       setImitation((prev) => {
         return toDo.list?.filter((item) => {
           return item.isCompleted === category;
@@ -57,7 +57,7 @@ const DetailToDoPage = () => {
           </div>
           <div>
             <AddToDo toDo={toDo} />
-            <StyledSelect value={category} defaultValue={STATUS_TODO.INCOMPLETE} onChange={handleClickSetCategory}>
+            <StyledSelect value={category} defaultValue={STATUS_TODO.ALL} onChange={handleClickSetCategory}>
               {[STATUS_TODO.ALL, STATUS_TODO.COMPLETE, STATUS_TODO.INCOMPLETE].map((item, index) => {
                 return <Option key={item} label={item} value={item} />;
               })}
@@ -69,8 +69,8 @@ const DetailToDoPage = () => {
 
       {imitation &&
         imitation.length !== 0 &&
-        imitation.map((item, index) => {
-          return <Row key={index} detail={item} />;
+        imitation.map((detail, index) => {
+          return <ToDoDetailRow key={index} detail={detail} />;
         })}
 
       {!toDoId && !toDo && <ErrorText fontSize={24}>To Do를 찾을 수 없습니다. </ErrorText>}
