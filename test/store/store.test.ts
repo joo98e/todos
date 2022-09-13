@@ -34,7 +34,7 @@ const initialState = {
 };
 describe("[리덕스] 스토어 ", () => {
   describe("[toDoState]", () => {
-    it("action - addToDoListAction", () => {
+    it("addToDoListAction, 액션을 취하면 todo list에 항목이 1개 추가 및 저장", () => {
       const store = mockStore(initialState);
       const toDo = {
         id: 2,
@@ -49,7 +49,7 @@ describe("[리덕스] 스토어 ", () => {
       expect(actions[0].payload).toEqual(toDo);
     });
 
-    it("action - addDetailToDoAction", () => {
+    it("addDetailToDoAction, 액션을 취하면 ToDo 항목이 1개 추가 및 저장", () => {
       const store = mockStore(initialState);
       const nextToDoState = [
         {
@@ -85,7 +85,7 @@ describe("[리덕스] 스토어 ", () => {
       expect(result).toEqual(nextToDoState[0]);
     });
 
-    it("action - completedDetailToDoAction", () => {
+    it("completedDetailToDoAction, 액션을 취하면 ToDo 항목이 1개 완료 처리", () => {
       const store = mockStore(initialState);
       const nextToDoState = [
         {

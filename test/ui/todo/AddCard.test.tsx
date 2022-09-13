@@ -8,9 +8,6 @@ import useToDo from "@hooks/useToDo";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { IToDo, IToDoDetail } from "@store/slices/types/ToDo";
 
-// jest.mock("react-redux");
-// jest.mock("react-hook-form");
-
 describe("[리덕스] AddCard Dispatch 호출 확인", function () {
   let root;
 
@@ -65,28 +62,25 @@ describe("[리덕스] AddCard Dispatch 호출 확인", function () {
     const handleSubmit = jest.fn(() => {
       return null;
     });
-    const useForm = jest.fn();
 
     // 화면에 노출
     const popUpTitle = screen.getByText("To Do");
-    expect(popUpTitle).toBeVisible();
-
-    // nickname input value is "ayaan"
     const nicknameInput: HTMLInputElement = screen.getByPlaceholderText("닉네임을 입력하세요.");
-    fireEvent.change(nicknameInput, { target: { value: "ayaan" } });
-    expect(nicknameInput).toHaveValue("ayaan");
-
     const subjectInput: HTMLInputElement = screen.getByPlaceholderText("제목을 입력하세요.");
-    fireEvent.change(subjectInput, { target: { value: "gfedcba" } });
-    expect(subjectInput).toHaveValue("gfedcba");
-
     const descInput: HTMLInputElement = screen.getByPlaceholderText("내용을 입력하세요.");
-    fireEvent.change(descInput, { target: { value: "abcdefg" } });
-    expect(descInput).toHaveValue("abcdefg");
-
     const submitButton = root.getByText("추가");
     submitButton.onclick = handleSubmit;
     root.baseElement.querySelector("form").onSubmit = handleSubmit;
+
+    expect(popUpTitle).toBeVisible();
+
+    fireEvent.change(nicknameInput, { target: { value: "ayaan" } });
+    fireEvent.change(subjectInput, { target: { value: "gfedcba" } });
+    fireEvent.change(descInput, { target: { value: "abcdefg" } });
+
+    expect(nicknameInput).toHaveValue("ayaan");
+    expect(subjectInput).toHaveValue("gfedcba");
+    expect(descInput).toHaveValue("abcdefg");
 
     /**
      * React state Action Wrapping
@@ -95,7 +89,7 @@ describe("[리덕스] AddCard Dispatch 호출 확인", function () {
       fireEvent.click(submitButton);
     });
 
-    // form의 각 input에 value가 있고, submit 이벤트가 발생하여 제출함(팝업이 종료되지 않음)
+    // form의 각 input에 value가 있고, submit 이벤트가 발생하여 제출함(팝업이 종료되어 더 이상 보이지 않음)
     expect(handleSubmit.mock.calls.length).toBe(1);
     expect(popUpTitle).not.toBeVisible();
   });
