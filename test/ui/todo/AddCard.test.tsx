@@ -5,22 +5,18 @@ import { getByText } from "@testing-library/dom";
 import { act, cleanup, fireEvent, screen } from "@testing-library/react";
 import { useDispatch } from "react-redux";
 import useToDo from "@hooks/useToDo";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { IToDo, IToDoDetail } from "@store/slices/types/ToDo";
 
-jest.mock("@hooks/useToDo");
 // jest.mock("react-redux");
 // jest.mock("react-hook-form");
 
 describe("AddCard Dispatch 호출 확인", function () {
   let root;
-  let useToDo;
 
   beforeEach(() => {
     root = useReduxProvider(<AddCard />, {});
-    useToDo.mockImplementationOnce(() => {
-      return {
-        addToDoList: function () {},
-      };
-    });
+    jest.mock("useToDo", () => {});
 
     // 추가하기 버튼을 찾아 클릭
     const button = root.getByText("추가하기");
@@ -30,9 +26,6 @@ describe("AddCard Dispatch 호출 확인", function () {
   afterEach(cleanup);
 
   it("폼이 입력되지 않은 채 Submit", async () => {
-    const { addToDoList } = useToDo();
-    addToDoList.mockImplementationOnce(() => {});
-
     const handleSubmit = jest.fn(() => {
       return null;
     });
@@ -40,6 +33,8 @@ describe("AddCard Dispatch 호출 확인", function () {
     const nicknameInput = screen.getByPlaceholderText("닉네임을 입력하세요.");
     const subjectInput = screen.getByPlaceholderText("제목을 입력하세요.");
     const descInput = screen.getByPlaceholderText("내용을 입력하세요.");
+    const popUpTitle = screen.getByText("To Do");
+
     expect(nicknameInput).toBeInTheDocument();
     expect(subjectInput).toBeInTheDocument();
     expect(descInput).toBeInTheDocument();
@@ -50,9 +45,14 @@ describe("AddCard Dispatch 호출 확인", function () {
 
     screen.getByText("추가").onclick = handleSubmit;
     root.baseElement.querySelector("form").onSubmit = handleSubmit;
+
     await act(() => {
       fireEvent.click(screen.getByText("추가"));
     });
+
+    // form의 각 input에 value가 없을 경우 submit 이벤트가 일어났으나 제출되지 않음(팝업이 종료되지 않음)
+    expect(handleSubmit.mock.calls.length).toBe(1);
+    expect(popUpTitle).toBeVisible();
   });
 
   /**
