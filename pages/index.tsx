@@ -15,17 +15,8 @@ const Home = () => {
   return (
     <Wrapper>
       <MakeGrid column={3} gap={24}>
-        {getAllToDos.map((item, idx) => {
-          return (
-            <Card
-              key={idx}
-              id={item.id}
-              nickname={item.nickname}
-              subject={item.subject}
-              desc={item.desc}
-              list={item.list}
-            />
-          );
+        {getAllToDos.map((item) => {
+          return <Card key={item.id} id={item.id} nickname={item.nickname} subject={item.subject} desc={item.desc} list={item.list} />;
         })}
         <AddCard />
       </MakeGrid>

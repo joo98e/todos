@@ -69,8 +69,8 @@ const DetailToDoPage = () => {
 
       {imitation &&
         imitation.length !== 0 &&
-        imitation.map((detail, index) => {
-          return <ToDoDetailRow key={index} detail={detail} />;
+        imitation.map((detail) => {
+          return <ToDoDetailRow key={detail.id} detail={detail} />;
         })}
 
       {!toDoId && !toDo && <ErrorText fontSize={24}>To Do를 찾을 수 없습니다. </ErrorText>}

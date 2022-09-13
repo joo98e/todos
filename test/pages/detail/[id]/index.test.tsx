@@ -27,8 +27,8 @@ describe("[pages]", () => {
     beforeEach(() => {
       container = useReduxProvider(
         <div data-testid={2}>
-          {dummy.map((detail, index) => {
-            return <ToDoDetailRow key={index} detail={detail} />;
+          {dummy.map((detail) => {
+            return <ToDoDetailRow key={detail.id} detail={detail} />;
           })}
         </div>,
         {}
