@@ -1,59 +1,60 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IToDo, IToDoListInitialState } from '@store/slices/types/ToDo'
-import { STATUS_TODO } from './enums/STATUS_TODO'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IToDo, IToDoListInitialState } from "@store/slices/types/ToDo";
+import { STATUS_TODO } from "./enums/STATUS_TODO";
 
 const initialState: IToDoListInitialState = {
   toDos: [
     {
       id: 1,
-      nickname: 'Ayaan',
-      subject: 'todos',
-      desc: 'refactoring',
+      nickname: "Ayaan",
+      subject: "todos",
+      desc: "refactoring",
       list: [
         {
           id: 1,
-          title: '물 주기',
-          desc: '식물에 물 주기',
+          title: "물 주기",
+          desc: "식물에 물 주기",
           isCompleted: STATUS_TODO.INCOMPLETE,
         },
         {
           id: 2,
-          title: '우산 접기',
-          desc: '우산 물 털고 접기',
+          title: "우산 접기",
+          desc: "우산 물 털고 접기",
           isCompleted: STATUS_TODO.COMPLETE,
         },
       ],
     },
   ],
-}
+};
 
 const toDoSlice = createSlice({
-  name: 'todo-list',
+  name: "todo-list",
   initialState,
   reducers: {
     addToDoListAction(state, action: PayloadAction<IToDo>) {
-      state.toDos.unshift(action.payload)
+      state.toDos.unshift(action.payload);
     },
 
     deleteToDoListAction() {},
 
-    addToDoDetailAction(state, action: PayloadAction<{ nextToDoState: IToDo[] }>) {
-      state.toDos = action.payload.nextToDoState
+    addDetailToDoAction(state, action: PayloadAction<{ nextToDoState: IToDo[] }>) {
+      state.toDos = action.payload.nextToDoState;
     },
 
     deleteDetailToDoAction() {},
 
     completedDetailToDoAction(state, action: PayloadAction<{ nextToDoState: IToDo[] }>) {
-      state.toDos = action.payload.nextToDoState
+      state.toDos = action.payload.nextToDoState;
     },
   },
-})
+});
 
-const toDoState = toDoSlice.reducer
-export const addToDoListAction = toDoSlice.actions.addToDoListAction
-export const deleteToDoListAction = toDoSlice.actions.deleteToDoListAction
-export const addDetailToDoAction = toDoSlice.actions.addToDoDetailAction
-export const deleteDetailToDoAction = toDoSlice.actions.deleteDetailToDoAction
-export const completedDetailToDoAction = toDoSlice.actions.completedDetailToDoAction
+const toDoState = toDoSlice.reducer;
+export const addToDoListAction = toDoSlice.actions.addToDoListAction;
+export const deleteToDoListAction = toDoSlice.actions.deleteToDoListAction;
 
-export default toDoState
+export const addDetailToDoAction = toDoSlice.actions.addDetailToDoAction;
+export const deleteDetailToDoAction = toDoSlice.actions.deleteDetailToDoAction;
+export const completedDetailToDoAction = toDoSlice.actions.completedDetailToDoAction;
+
+export default toDoState;

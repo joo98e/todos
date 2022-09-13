@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 
-function useTestContainer(component: any) {
+function useCustomProvider(component: any) {
   const { container } = render(component);
   return container;
 }
-export default useTestContainer;
+export default useCustomProvider;

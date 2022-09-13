@@ -6,7 +6,7 @@ import AddCard from "@ui/todo/AddCard";
 import "@testing-library/jest-dom";
 import exp from "constants";
 import { afterEach, beforeEach } from "@jest/globals";
-import useTestContainer from "@testing/fixtures/useTestContainer";
+import useCustomProvider from "@testing/fixtures/useCustomProvider";
 
 describe(`[pages]`, function () {
   const toDoList = [
@@ -54,7 +54,7 @@ describe(`[pages]`, function () {
   let container;
 
   beforeEach(() => {
-    container = useTestContainer(
+    container = useCustomProvider(
       <MakeGrid data-testid={"CardWrapper"} column={3} gap={24}>
         {toDoList.map((item, idx) => {
           return <Card key={idx} id={item.id} nickname={item.nickname} subject={item.subject} desc={item.desc} list={item.list} />;
@@ -77,7 +77,7 @@ describe(`[pages]`, function () {
     });
 
     it("빈 배열이라면, 카드 컴포넌트가 없어야 한다. ", function () {
-      const anotherContainer = useTestContainer(
+      const anotherContainer = useCustomProvider(
         <MakeGrid data-testid={"CardWrapper"} column={3} gap={24}>
           {[].map((item, idx) => {
             return <Card key={idx} id={item.id} nickname={item.nickname} subject={item.subject} desc={item.desc} list={item.list} />;
