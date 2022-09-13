@@ -11,7 +11,7 @@ import { IToDo, IToDoDetail } from "@store/slices/types/ToDo";
 // jest.mock("react-redux");
 // jest.mock("react-hook-form");
 
-describe("AddCard Dispatch 호출 확인", function () {
+describe("[리덕스] AddCard Dispatch 호출 확인", function () {
   let root;
 
   beforeEach(() => {
@@ -50,7 +50,7 @@ describe("AddCard Dispatch 호출 확인", function () {
       fireEvent.click(screen.getByText("추가"));
     });
 
-    // form의 각 input에 value가 없을 경우 submit 이벤트가 일어났으나 제출되지 않음(팝업이 종료되지 않음)
+    // form의 각 input에 value가 없을 경우 submit 이벤트가 발생했으나 제출되지 않음(팝업이 종료되지 않음)
     expect(handleSubmit.mock.calls.length).toBe(1);
     expect(popUpTitle).toBeVisible();
   });
@@ -62,6 +62,9 @@ describe("AddCard Dispatch 호출 확인", function () {
    * // const addButton = container.getByText("추가하기");
    */
   it("폼 입력 후 Submit, Dispatch 호출", async function () {
+    const handleSubmit = jest.fn(() => {
+      return null;
+    });
     const useForm = jest.fn();
 
     // 화면에 노출
@@ -82,6 +85,9 @@ describe("AddCard Dispatch 호출 확인", function () {
     expect(descInput).toHaveValue("abcdefg");
 
     const submitButton = root.getByText("추가");
+    submitButton.onclick = handleSubmit;
+    root.baseElement.querySelector("form").onSubmit = handleSubmit;
+
     /**
      * React state Action Wrapping
      */
@@ -89,6 +95,8 @@ describe("AddCard Dispatch 호출 확인", function () {
       fireEvent.click(submitButton);
     });
 
+    // form의 각 input에 value가 있고, submit 이벤트가 발생하여 제출함(팝업이 종료되지 않음)
+    expect(handleSubmit.mock.calls.length).toBe(1);
     expect(popUpTitle).not.toBeVisible();
   });
 });
