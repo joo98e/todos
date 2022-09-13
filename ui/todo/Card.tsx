@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
-import PlainText from "@ui/typography/PlainText";
-import SubText from "@ui/typography/SubText";
 import { useRouter } from "next/router";
 import { IToDo } from "@store/slices/types/ToDo";
 import { ICardProps } from "@ui/todo/types";
+import Typhography from "../../components/atom/Typography";
 
 export const StyledCard = styled.div`
   min-width: 240px;
@@ -29,8 +28,10 @@ const Card = ({ id, subject, desc, list = [], ...rest }: ICardProps) => {
 
   return (
     <StyledCard onClick={handleClickDetail} {...rest}>
-      <PlainText oneLine={true}>{subject ?? "제목 없음"}</PlainText>
-      <SubText>{desc ?? " - "}</SubText>
+      <Typhography variant={"plain"} oneLine={true}>
+        {subject ?? "제목 없음"}
+      </Typhography>
+      <Typhography variant={"sub"}>{desc ?? " - "}</Typhography>
     </StyledCard>
   );
 };

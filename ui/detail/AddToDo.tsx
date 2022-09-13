@@ -3,9 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import ErrorText from "@ui/typography/ErrorText";
 import Button from "@ui/button";
-import PlainText from "@ui/typography/PlainText";
 import FlexBox from "@ui/flex/FlexBox";
 import { PlusSvgIcon } from "@ui/svg";
 import { log } from "util";
@@ -13,6 +11,7 @@ import { RootState } from "@store/index";
 import { IToDo } from "@store/slices/types/ToDo";
 import useToDo from "../../src/hooks/useToDo";
 import { IAddToDoProps } from "@ui/detail/types";
+import Typhography from "../../components/atom/Typography";
 
 const StyledBackDrop = styled.div`
   position: fixed;
@@ -103,9 +102,9 @@ const AddToDo = ({ toDo }: IAddToDoProps) => {
           <StyledBackDrop onClick={handleToggle} />
           <StyledGenerateBox>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <PlainText fontSize={24} color="#7b68ee">
+              <Typhography fontSize={24} color="#7b68ee">
                 To Do List Add
-              </PlainText>
+              </Typhography>
               <div>
                 <StyledInput
                   {...register("title", {
@@ -113,15 +112,11 @@ const AddToDo = ({ toDo }: IAddToDoProps) => {
                   })}
                   placeholder={"제목을 입력하세요."}
                 />
-                <StyledTextArea
-                  {...register("desc", { required: "내용을 입력해주세요. " })}
-                  placeholder={"내용을 입력하세요."}
-                  rows={4}
-                />
+                <StyledTextArea {...register("desc", { required: "내용을 입력해주세요. " })} placeholder={"내용을 입력하세요."} rows={4} />
               </div>
-              <ErrorText fontSize={14}>
-                <>{errors.title?.message || errors.desc?.message}</>
-              </ErrorText>
+              <Typhography variant={"error"} fontSize={14}>
+                {errors.title?.message || errors.desc?.message}
+              </Typhography>
               <FlexBox justifyContent={"center"} alignItems={"center"}>
                 <Button onClick={handleSubmit(onSubmit)}>추가</Button>
                 <Button primary="#999" onClick={handleToggle}>

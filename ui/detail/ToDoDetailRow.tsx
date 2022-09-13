@@ -1,15 +1,13 @@
 import styled from "@emotion/styled";
 
 import Button from "@ui/button";
-import PlainText from "@ui/typography/PlainText";
-import SubText from "@ui/typography/SubText";
 import CompleteToDo from "./CompleteToDo";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@store/index";
 import { IToDo } from "@store/slices/types/ToDo";
 import { IRowProps } from "@ui/detail/types";
-import { STATUS_TODO } from "../../store/slices/enums/STATUS_TODO";
+import Typhography from "../../components/atom/Typography";
 
 const Grid = styled.div`
   display: grid;
@@ -21,33 +19,31 @@ const Grid = styled.div`
 const GridItem = styled.div``;
 
 const ToDoDetailRow = ({ detail: { id, isCompleted, desc, title } }: IRowProps) => {
-  const completed = isCompleted === STATUS_TODO.COMPLETE;
-
   return (
     <Grid>
       <GridItem>
-        {completed ? (
-          <PlainText style={{ textDecoration: "line-through", color: "#777" }} fontSize={18}>
+        {isCompleted ? (
+          <Typhography variant={"sub"} style={{ textDecoration: "line-through" }} fontSize={18}>
             {title}
-          </PlainText>
+          </Typhography>
         ) : (
-          <PlainText fontSize={18}>{title}</PlainText>
+          <Typhography fontSize={18}>{title}</Typhography>
         )}
       </GridItem>
       <GridItem>
-        {completed ? (
-          <SubText fontSize={16} style={{ textDecoration: "line-through", color: "#777" }}>
+        {isCompleted ? (
+          <Typhography style={{ textDecoration: "line-through" }} fontSize={16}>
             {desc}
-          </SubText>
+          </Typhography>
         ) : (
-          <SubText fontSize={16}>{desc}</SubText>
+          <Typhography fontSize={16}>{desc}</Typhography>
         )}
       </GridItem>
       <GridItem>
-        {!completed ? (
+        {!isCompleted ? (
           <CompleteToDo detailToDoId={id} />
         ) : (
-          <Button primary={"#5d5d5d"} textPrimary={"#fff"} onClick={() => {}}>
+          <Button primary={"#5d5d5d"} textPrimary={"#fff"}>
             완료됨
           </Button>
         )}

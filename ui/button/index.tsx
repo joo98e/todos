@@ -16,13 +16,7 @@ const StyledButton = styled.button<{
   cursor: pointer;
 `;
 
-const Button = ({
-  primary,
-  children,
-  onClick,
-  textPrimary,
-  ...rest
-}: IButtonProps) => {
+const Button = ({ primary, children, onClick = () => {}, textPrimary, ...rest }: IButtonProps) => {
   return (
     <StyledButton primary={primary} textPrimary={textPrimary} onClick={onClick}>
       {children}

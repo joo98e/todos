@@ -4,7 +4,7 @@ import { RootState } from "@store/index";
 import { IToDo } from "@store/slices/types/ToDo";
 import { IAddToDoDetailParams, ICompleteToDoDetailParams } from "@hooks/types";
 import { addDetailToDoAction, addToDoListAction, completedDetailToDoAction } from "@store/slices/toDoSlice";
-import { STATUS_TODO } from "../../store/slices/enums/STATUS_TODO";
+import FILTER_BY_TODO_STATUS from "@store/slices/enums/FILTER_BY_TODO_STATUS";
 
 const useToDo = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const useToDo = () => {
       item.id === toDoId &&
         nextToDoState[idx].list.unshift({
           id: new Date().getTime(),
-          isCompleted: STATUS_TODO.INCOMPLETE,
+          isCompleted: false,
           ...data,
         });
     });
@@ -45,7 +45,7 @@ const useToDo = () => {
       if (ToDo.id === toDoId) {
         origin[i].list.forEach((item, j) => {
           if (item.id === detailToDoId) {
-            origin[i].list[j].isCompleted = STATUS_TODO.COMPLETE;
+            origin[i].list[j].isCompleted = true;
           }
         });
       }

@@ -3,12 +3,11 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import ErrorText from "@ui/typography/ErrorText";
 import Button from "@ui/button";
-import PlainText from "@ui/typography/PlainText";
 import FlexBox from "@ui/flex/FlexBox";
 import useToDo from "@hooks/useToDo";
 import Dialog from "@ui/dialog/Dialog";
+import Typhography from "../../components/atom/Typography";
 
 export const StyledCard = styled.div<{
   isIconCard?: boolean;
@@ -112,9 +111,9 @@ const AddCard = () => {
         <>
           <StyledGenerateBox>
             <form onSubmit={handleSubmit(onSubmit)} data-testid={"testform"}>
-              <PlainText fontSize={24} color="#7b68ee">
+              <Typhography fontSize={24} color="#7b68ee">
                 To Do
-              </PlainText>
+              </Typhography>
               <StyledInput
                 {...register("nickname", {
                   required: "닉네임을 입력해주세요. ",
@@ -128,9 +127,9 @@ const AddCard = () => {
                 placeholder={"제목을 입력하세요."}
               />
               <StyledTextArea {...register("desc", { required: "내용을 입력해주세요. " })} placeholder={"내용을 입력하세요."} rows={4} />
-              <ErrorText fontSize={14}>
-                <>{errors.nickname?.message || errors.subject?.message || errors.desc?.message}</>
-              </ErrorText>
+              <Typhography variant={"error"} fontSize={14}>
+                {errors.nickname?.message || errors.subject?.message || errors.desc?.message}
+              </Typhography>
               <FlexBox justifyContent={"center"} alignItems={"center"}>
                 <Button onClick={handleSubmit(onSubmit)}>추가</Button>
                 <Button primary="#999" onClick={handleToggle}>

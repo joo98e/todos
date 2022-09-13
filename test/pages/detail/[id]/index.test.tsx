@@ -1,6 +1,5 @@
 import { beforeEach } from "@jest/globals";
 import useReduxProvider from "@testing/fixtures/useReduxProvider";
-import { STATUS_TODO } from "@store/slices/enums/STATUS_TODO";
 import ToDoDetailRow from "@ui/detail/ToDoDetailRow";
 import { screen } from "@testing-library/react";
 
@@ -13,13 +12,13 @@ describe("[pages]", () => {
         id: 1,
         title: "물 주기",
         desc: "식물에 물 주기",
-        isCompleted: STATUS_TODO.INCOMPLETE,
+        isCompleted: false,
       },
       {
         id: 2,
         title: "우산 접기",
         desc: "우산 물 털고 접기",
-        isCompleted: STATUS_TODO.COMPLETE,
+        isCompleted: true,
       },
     ];
     let container;

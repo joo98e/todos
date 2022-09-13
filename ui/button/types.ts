@@ -10,5 +10,5 @@ export interface IButtonProps {
   primary?: Color;
   textPrimary?: Color;
   children: JSX.Element | string;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
