@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
-import ToDoDetailRow from "@ui/detail/ToDoDetailRow";
-import AddToDo from "@ui/detail/AddToDo";
-import FlexBox from "@ui/flex/FlexBox";
+import GridDetailRow from "@components/organisms/toDoList/GridDetailRow";
+import AddTaskButton from "@components/molecules/toDoDetail/AddTaskButton";
+import FlexBox from "@components/atom/FlexBox";
 import { Divider } from "antd";
 import useToDo from "@hooks/useToDo";
-import StyledSelect from "@ui/select/StyledSelect";
+import StyledSelect from "@components/atom/StyledSelect";
 import { useEffect, useState } from "react";
-import Option from "@ui/select/Option";
+import Option from "@components/atom/Option";
 import { IToDoDetail } from "@store/slices/types/ToDo";
 import FILTER_BY_TODO_STATUS from "@store/slices/enums/FILTER_BY_TODO_STATUS";
 import Typhography from "../../../components/atom/Typography";
@@ -74,7 +74,7 @@ const DetailToDoPage = () => {
             </Typhography>
           </div>
           <div>
-            <AddToDo toDo={toDo} />
+            <AddTaskButton toDo={toDo} />
             <StyledSelect value={category} defaultValue={FILTER_BY_TODO_STATUS.ALL.type} onChange={handleClickSetCategory}>
               {selectConfig.map((item, index) => {
                 return <Option key={item.value} label={item.desc} value={item.value} />;
@@ -88,7 +88,7 @@ const DetailToDoPage = () => {
       {imitation &&
         imitation.length !== 0 &&
         imitation.map((detail) => {
-          return <ToDoDetailRow key={detail.id} detail={detail} />;
+          return <GridDetailRow key={detail.id} detail={detail} />;
         })}
 
       {!toDoId && !toDo && <Typhography fontSize={24}>To Do를 찾을 수 없습니다. </Typhography>}

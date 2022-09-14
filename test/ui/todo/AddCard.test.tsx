@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe } from "@jest/globals";
-import AddCard from "@ui/todo/AddCard";
+import AddToDoCard from "@components/molecules/toDoList/AddToDoCard";
 import useReduxProvider from "@testing/fixtures/useReduxProvider";
 import { getByText } from "@testing-library/dom";
 import { act, cleanup, fireEvent, screen } from "@testing-library/react";
@@ -8,11 +8,11 @@ import useToDo from "@hooks/useToDo";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { IToDo, IToDoDetail } from "@store/slices/types/ToDo";
 
-describe("[리덕스] AddCard Dispatch 호출 확인", function () {
+describe("[리덕스] AddToDoCard Dispatch 호출 확인", function () {
   let root;
 
   beforeEach(() => {
-    root = useReduxProvider(<AddCard />, {});
+    root = useReduxProvider(<AddToDoCard />, {});
     jest.mock("useToDo", () => {});
 
     // 추가하기 버튼을 찾아 클릭

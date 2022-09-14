@@ -1,7 +1,7 @@
 import getPageTitleByPathname from "@utils/getPageTitleByPathname";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
-import { PrevSvgIcon } from "@ui/svg";
+import { PrevIcon } from "@components/atom/svg/Prev";
 
 const StyledTitle = styled.h1`
   position: relative;
@@ -33,7 +33,7 @@ const IconButton = styled.button`
   }
 `;
 
-const Title = () => {
+const ItalyParagraph = () => {
   const router = useRouter();
   const status = /detail/.test(router.pathname);
 
@@ -41,7 +41,7 @@ const Title = () => {
     <StyledTitle>
       {status && (
         <IconButton onClick={() => router.back()}>
-          <PrevSvgIcon width={"32px"} height={"32px"} />
+          <PrevIcon width={"32px"} height={"32px"} />
         </IconButton>
       )}
       {getPageTitleByPathname(router.pathname)}
@@ -49,4 +49,4 @@ const Title = () => {
   );
 };
 
-export default Title;
+export default ItalyParagraph;

@@ -1,8 +1,8 @@
 import configureStore from "redux-mock-store";
 import { render, screen } from "@testing-library/react";
-import MakeGrid from "@ui/grid/MakeGrid";
-import Card from "@ui/todo/Card";
-import AddCard from "@ui/todo/AddCard";
+import GridOrg from "@components/organisms/toDoList/GridOrg";
+import Card from "@components/molecules/toDoList/Card";
+import AddToDoCard from "@components/molecules/toDoList/AddToDoCard";
 import "@testing-library/jest-dom";
 import exp from "constants";
 import { afterEach, beforeEach } from "@jest/globals";
@@ -55,11 +55,11 @@ describe(`[pages]`, function () {
 
   beforeEach(() => {
     container = useCustomProvider(
-      <MakeGrid data-testid={"CardWrapper"} column={3} gap={24}>
+      <GridOrg data-testid={"CardWrapper"} column={3} gap={24}>
         {toDoList.map((item) => {
           return <Card key={item.id} id={item.id} nickname={item.nickname} subject={item.subject} desc={item.desc} list={item.list} />;
         })}
-      </MakeGrid>
+      </GridOrg>
     );
   });
 
@@ -78,11 +78,11 @@ describe(`[pages]`, function () {
 
     it("빈 배열이라면, 카드 컴포넌트가 없음", function () {
       const anotherContainer = useCustomProvider(
-        <MakeGrid data-testid={"CardWrapper"} column={3} gap={24}>
+        <GridOrg data-testid={"CardWrapper"} column={3} gap={24}>
           {[].map((item) => {
             return <Card key={item.id} id={item.id} nickname={item.nickname} subject={item.subject} desc={item.desc} list={item.list} />;
           })}
-        </MakeGrid>
+        </GridOrg>
       );
 
       expect(anotherContainer.querySelector('*[data-testid="CardWrapper"]').children.length).toEqual(0);

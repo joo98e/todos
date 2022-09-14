@@ -1,17 +1,16 @@
-import { StyledCard } from "@ui/todo/Card";
+import { DefaultBackDrop } from "@components/molecules/toDoList/Card";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import Button from "@ui/button";
-import FlexBox from "@ui/flex/FlexBox";
-import { PlusSvgIcon } from "@ui/svg";
+import FlexBox from "@components/atom/FlexBox";
 import { log } from "util";
 import { RootState } from "@store/index";
 import { IToDo } from "@store/slices/types/ToDo";
-import useToDo from "../../src/hooks/useToDo";
-import { IAddToDoProps } from "@ui/detail/types";
-import Typhography from "../../components/atom/Typography";
+import useToDo from "@hooks/useToDo";
+import { IAddToDoProps } from "@components/organisms/toDoList/types";
+import Typhography from "../../atom/Typography";
+import Button from "@components/atom/Button";
 
 const StyledBackDrop = styled.div`
   position: fixed;
@@ -61,7 +60,7 @@ interface IForm {
   desc: string;
 }
 
-const AddToDo = ({ toDo }: IAddToDoProps) => {
+const AddTaskButton = ({ toDo }: IAddToDoProps) => {
   const [visible, setVisible] = useState(false);
   const { addDetailToDo } = useToDo();
 
@@ -131,4 +130,4 @@ const AddToDo = ({ toDo }: IAddToDoProps) => {
   );
 };
 
-export default AddToDo;
+export default AddTaskButton;

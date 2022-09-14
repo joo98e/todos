@@ -1,7 +1,10 @@
-import AddCard from "@ui/todo/AddCard";
-import { IMakeGridProps } from "./types";
-import styled, { CreateStyled } from "@emotion/styled";
-import Card from "@ui/todo/Card";
+import styled from "@emotion/styled";
+interface IGridOrgProps {
+  column: number;
+  gap?: number;
+  fr?: string;
+  children: any;
+}
 
 const Grid = styled.div<{
   gap: number;
@@ -13,13 +16,7 @@ const Grid = styled.div<{
   grid-gap: ${(props) => `${props.gap}px`};
 `;
 
-const MakeGrid = ({
-  column,
-  fr = "1fr",
-  gap = 8,
-  children,
-  ...rest
-}: IMakeGridProps) => {
+const GridOrg = ({ column, fr = "1fr", gap = 8, children, ...rest }: IGridOrgProps) => {
   return (
     <Grid column={column} gap={gap} fr={fr} {...rest}>
       {children}
@@ -27,4 +24,4 @@ const MakeGrid = ({
   );
 };
 
-export default MakeGrid;
+export default GridOrg;

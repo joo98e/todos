@@ -1,6 +1,6 @@
 import { beforeEach } from "@jest/globals";
 import useReduxProvider from "@testing/fixtures/useReduxProvider";
-import ToDoDetailRow from "@ui/detail/ToDoDetailRow";
+import GridDetailRow from "@components/organisms/toDoList/GridDetailRow";
 import { screen } from "@testing-library/react";
 
 jest.mock("next/router", () => require("next-router-mock"));
@@ -27,7 +27,7 @@ describe("[pages]", () => {
       container = useReduxProvider(
         <div data-testid={2}>
           {dummy.map((detail) => {
-            return <ToDoDetailRow key={detail.id} detail={detail} />;
+            return <GridDetailRow key={detail.id} detail={detail} />;
           })}
         </div>,
         {}

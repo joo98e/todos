@@ -1,8 +1,12 @@
 import styled from "@emotion/styled";
 
 import { CSSProperties } from "react";
-import { Color } from "@ui/button/types";
 import { css } from "@emotion/react";
+
+type RGB = `rgb(${number}, ${number}, ${number})`;
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
+type HEX = `#${string}`;
+type Color = RGB | RGBA | HEX;
 
 interface ITyphographyProps {
   fontSize?: number;

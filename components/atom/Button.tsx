@@ -1,6 +1,18 @@
 import styled from "@emotion/styled";
 import { MouseEventHandler } from "react";
-import { Color, IButtonProps } from "@ui/button/types";
+
+type RGB = `rgb(${number}, ${number}, ${number})`;
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
+type HEX = `#${string}`;
+
+export type Color = RGB | RGBA | HEX;
+
+interface IButtonProps {
+  primary?: Color;
+  textPrimary?: Color;
+  children: JSX.Element | string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+}
 
 const StyledButton = styled.button<{
   primary?: Color;

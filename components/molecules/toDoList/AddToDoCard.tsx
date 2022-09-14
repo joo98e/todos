@@ -1,13 +1,13 @@
-import { PlusSvgIcon } from "@ui/svg";
 import { useState } from "react";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import Button from "@ui/button";
-import FlexBox from "@ui/flex/FlexBox";
+import FlexBox from "@components/atom/FlexBox";
 import useToDo from "@hooks/useToDo";
-import Dialog from "@ui/dialog/Dialog";
-import Typhography from "../../components/atom/Typography";
+import Dialog from "@components/molecules/infra/Dialog";
+import Typhography from "../../atom/Typography";
+import Button from "@components/atom/Button";
+import { PlusIcon } from "@components/atom/svg/Plus";
 
 export const StyledCard = styled.div<{
   isIconCard?: boolean;
@@ -75,7 +75,7 @@ interface IForm {
   desc: string;
 }
 
-const AddCard = () => {
+const AddToDoCard = () => {
   const [visible, setVisible] = useState(false);
   const { addToDoList } = useToDo();
 
@@ -103,7 +103,7 @@ const AddCard = () => {
   return (
     <>
       <StyledCard isIconCard={true} onClick={handleToggle}>
-        <PlusSvgIcon width={"32px"} height={"32px"} />
+        <PlusIcon width={"32px"} height={"32px"} />
         추가하기
       </StyledCard>
 
@@ -144,4 +144,4 @@ const AddCard = () => {
   );
 };
 
-export default AddCard;
+export default AddToDoCard;

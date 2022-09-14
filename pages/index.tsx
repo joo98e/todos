@@ -1,9 +1,10 @@
-import MakeGrid from "@ui/grid/MakeGrid";
+import GridOrg from "@components/organisms/toDoList/GridOrg";
 import styled from "@emotion/styled";
 
-import Card from "@ui/todo/Card";
-import AddCard from "@ui/todo/AddCard";
+import Card from "@components/molecules/toDoList/Card";
 import useToDo from "@hooks/useToDo";
+import CardHeader from "@components/molecules/toDoList/CardHeader";
+import AddToDoCard from "@components/molecules/toDoList/AddToDoCard";
 
 const Wrapper = styled.div`
   padding-right: 48px;
@@ -14,12 +15,12 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <MakeGrid column={3} gap={24}>
+      <GridOrg column={3} gap={24}>
         {getAllToDos.map((item) => {
           return <Card key={item.id} id={item.id} nickname={item.nickname} subject={item.subject} desc={item.desc} list={item.list} />;
         })}
-        <AddCard />
-      </MakeGrid>
+        <AddToDoCard />
+      </GridOrg>
     </Wrapper>
   );
 };

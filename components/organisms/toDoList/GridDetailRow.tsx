@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
-
-import Button from "@ui/button";
-import CompleteToDo from "./CompleteToDo";
+import CompleteButton from "../../molecules/toDoDetail/CompleteButton";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@store/index";
 import { IToDo } from "@store/slices/types/ToDo";
-import { IRowProps } from "@ui/detail/types";
-import Typhography from "../../components/atom/Typography";
+import { IRowProps } from "@components/organisms/toDoList/types";
+import Typhography from "../../atom/Typography";
+import Button from "@components/atom/Button";
 
 const Grid = styled.div`
   display: grid;
@@ -18,7 +17,7 @@ const Grid = styled.div`
 
 const GridItem = styled.div``;
 
-const ToDoDetailRow = ({ detail: { id, isCompleted, desc, title } }: IRowProps) => {
+const GridDetailRow = ({ detail: { id, isCompleted, desc, title } }: IRowProps) => {
   return (
     <Grid>
       <GridItem>
@@ -41,7 +40,7 @@ const ToDoDetailRow = ({ detail: { id, isCompleted, desc, title } }: IRowProps) 
       </GridItem>
       <GridItem>
         {!isCompleted ? (
-          <CompleteToDo detailToDoId={id} />
+          <CompleteButton detailToDoId={id} />
         ) : (
           <Button primary={"#5d5d5d"} textPrimary={"#fff"}>
             완료됨
@@ -52,4 +51,4 @@ const ToDoDetailRow = ({ detail: { id, isCompleted, desc, title } }: IRowProps) 
   );
 };
 
-export default ToDoDetailRow;
+export default GridDetailRow;

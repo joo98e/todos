@@ -1,12 +1,20 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { IToDo } from "@store/slices/types/ToDo";
-import { ICardProps } from "@ui/todo/types";
-import Typhography from "../../components/atom/Typography";
+import Typhography from "../../atom/Typography";
+import CardHeader from "@components/molecules/toDoList/CardHeader";
 
-export const StyledCard = styled.div`
+export interface ICardProps {
+  id: number;
+  nickname: string;
+  subject: string;
+  desc: string;
+  list: any[];
+}
+
+export const DefaultBackDrop = styled.div`
   min-width: 240px;
-  height: 180px;
+  min-height: 120px;
   padding: 8px;
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
@@ -23,16 +31,13 @@ const Card = ({ id, subject, desc, list = [], ...rest }: ICardProps) => {
   const router = useRouter();
 
   const handleClickDetail = () => {
-    router.push(`/detail/${id}`).then((r) => {});
+    router.push(`/detail/${id}`);
   };
 
   return (
-    <StyledCard onClick={handleClickDetail} {...rest}>
-      <Typhography variant={"plain"} oneLine={true}>
-        {subject ?? "제목 없음"}
-      </Typhography>
-      <Typhography variant={"sub"}>{desc ?? " - "}</Typhography>
-    </StyledCard>
+    <DefaultBackDrop onClick={handleClickDetail} {...rest}>
+      <CardHeader subject={subject} desc={desc} />
+    </DefaultBackDrop>
   );
 };
 

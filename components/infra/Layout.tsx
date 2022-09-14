@@ -1,5 +1,5 @@
-import Title from './Title'
-import styled from '@emotion/styled'
+import ItalyParagraph from "@components/atom/ItalyParagraph";
+import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
   display: grid;
@@ -14,17 +14,16 @@ const Wrapper = styled.div`
     flex-direction: column;
     padding: 1rem 2rem;
   }
-`
-const Children = styled.div``
+`;
+const Children = styled.div``;
 const Layout = ({ children }) => {
   return (
     <Wrapper>
-      {/* Title */}
-      <Title />
+      <ItalyParagraph />
       {/* Children */}
       <Children>{children}</Children>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

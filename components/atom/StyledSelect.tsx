@@ -1,4 +1,4 @@
-import Option from "@ui/select/Option";
+import Option from "@components/atom/Option";
 import styled from "@emotion/styled";
 
 const StyledSelectBox = styled.select`
