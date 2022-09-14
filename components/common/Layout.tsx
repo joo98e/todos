@@ -1,4 +1,4 @@
-import ItalyParagraph from "@components/atom/ItalyParagraph";
+import PageTitle from "@components/molecules/infra/PageTitle";
 import styled from "@emotion/styled";
 import usePathName from "@hooks/usePathName";
 
@@ -23,8 +23,7 @@ const Layout = ({ children }) => {
   const { current, pathname } = usePathName();
   return (
     <Wrapper>
-      {current}
-      <ItalyParagraph />
+      <PageTitle />
       {/* Children */}
       <Children>{children}</Children>
     </Wrapper>

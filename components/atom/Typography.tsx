@@ -15,6 +15,7 @@ interface ITyphographyProps {
   variant?: "plain" | "sub" | "error";
   style?: CSSProperties;
   children: string;
+  italy?: boolean;
 }
 
 interface IComponentProps {
@@ -22,7 +23,8 @@ interface IComponentProps {
   oneLine?: boolean;
   concept?: string;
   children: string;
-  style: CSSProperties;
+  style?: CSSProperties;
+  italy?: boolean;
 }
 
 const StyledTyphography = styled.p<IComponentProps>`
@@ -36,6 +38,12 @@ const StyledTyphography = styled.p<IComponentProps>`
       overflow: hidden;
       text-overflow: ellipsis;
     `};
+
+  ${(props) =>
+    props.italy &&
+    css`
+      font-family: "LeferiPoint-WhiteObliqueA", sans-serif;
+    `}
 `;
 
 const concept = {
@@ -44,9 +52,9 @@ const concept = {
   error: "#c65959",
 };
 
-const Typhography = ({ fontSize = 16, children, oneLine = false, color, variant = "plain", style }: ITyphographyProps) => {
+const Typhography = ({ fontSize = 16, children, oneLine = false, color, variant = "plain", style, italy }: ITyphographyProps) => {
   return (
-    <StyledTyphography oneLine={oneLine} fontSize={fontSize} concept={concept[variant]} style={style}>
+    <StyledTyphography oneLine={oneLine} fontSize={fontSize} concept={concept[variant]} style={style} italy={italy}>
       {children}
     </StyledTyphography>
   );

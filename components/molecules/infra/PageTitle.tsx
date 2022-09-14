@@ -2,15 +2,14 @@ import getPageTitleByPathname from "@utils/getPageTitleByPathname";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 import { PrevIcon } from "@components/atom/svg/Prev";
+import Typhography from "@components/atom/Typography";
+import usePathName from "@hooks/usePathName";
 
 const StyledTitle = styled.h1`
   position: relative;
   top: 0;
   left: 0;
   display: block;
-  font-size: 36px;
-  text-indent: 56px;
-  font-family: "LeferiPoint-WhiteObliqueA", sans-serif;
   padding-left: 12px;
 `;
 
@@ -33,20 +32,22 @@ const IconButton = styled.button`
   }
 `;
 
-const ItalyParagraph = () => {
+const PageTitle = () => {
   const router = useRouter();
-  const status = /detail/.test(router.pathname);
+  const { pathname, current } = usePathName();
 
   return (
     <StyledTitle>
-      {status && (
+      {current === "Detail Page" && (
         <IconButton onClick={() => router.back()}>
           <PrevIcon width={"32px"} height={"32px"} />
         </IconButton>
       )}
-      {getPageTitleByPathname(router.pathname)}
+      <Typhography fontSize={36} italy={true} style={{ textIndent: "64px" }}>
+        {getPageTitleByPathname(router.pathname)}
+      </Typhography>
     </StyledTitle>
   );
 };
 
-export default ItalyParagraph;
+export default PageTitle;
