@@ -23,7 +23,9 @@
       "@ui/*": ["ui/*"],
       "@store/*": ["store/*"],
       "@testing/mocks/*": ["__mocks__/*"],
-      "@testing/fixtures/*": ["fixtures/*"]
+      "@testing/fixtures/*": ["fixtures/*"],
+      "@components/*" : ["components/*"],
+      "@storybook/*" : ["src/stories/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./jest-setup.ts"],

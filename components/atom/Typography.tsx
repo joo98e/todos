@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
 import { CSSProperties } from "react";
-import { ITextProps } from "./types";
 import { Color } from "@ui/button/types";
 import { css } from "@emotion/react";
 
