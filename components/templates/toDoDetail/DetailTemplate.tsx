@@ -32,7 +32,7 @@ const selectConfig = [
   },
 ];
 
-const DetailToDoTemplate = () => {
+const DetailTemplate = () => {
   const router = useRouter();
   const toDoId = router.query.id ? +router.query.id : null;
   const [category, setCategory] = useState<string>(FILTER_BY_TODO_STATUS.ALL.type);
@@ -96,4 +96,4 @@ const DetailToDoTemplate = () => {
   );
 };
 
-export default DetailToDoTemplate;
+export default DetailTemplate;

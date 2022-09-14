@@ -1,11 +1,11 @@
-import DetailToDoTemplate from "@components/templates/toDoDetail/DetailToDoTemplate";
+import DetailTemplate from "@components/templates/toDoDetail/DetailTemplate";
 
 interface IDetailToDoPageProps {}
 
 const DetailToDoPage = ({}: IDetailToDoPageProps) => {
   return (
     <>
-      <DetailToDoTemplate />
+      <DetailTemplate />
     </>
   );
 };
