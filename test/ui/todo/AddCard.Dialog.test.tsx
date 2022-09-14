@@ -3,7 +3,7 @@
  * 2022/09/08 10:49 AM
  */
 import { beforeEach, describe } from "@jest/globals";
-import useReduxProvider from "@testing/fixtures/useReduxProvider";
+import useReduxProvider from "../../fixtures/useReduxProvider";
 import AddToDoCard from "@components/molecules/toDoList/AddToDoCard";
 import { fireEvent } from "@testing-library/dom";
 import { screen } from "@testing-library/react";

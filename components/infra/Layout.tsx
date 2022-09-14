@@ -1,5 +1,6 @@
 import ItalyParagraph from "@components/atom/ItalyParagraph";
 import styled from "@emotion/styled";
+import usePathName from "@hooks/usePathName";
 
 const Wrapper = styled.div`
   display: grid;
@@ -15,10 +16,14 @@ const Wrapper = styled.div`
     padding: 1rem 2rem;
   }
 `;
+
 const Children = styled.div``;
+
 const Layout = ({ children }) => {
+  const { current, pathname } = usePathName();
   return (
     <Wrapper>
+      {current}
       <ItalyParagraph />
       {/* Children */}
       <Children>{children}</Children>

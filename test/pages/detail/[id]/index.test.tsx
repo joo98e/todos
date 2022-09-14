@@ -1,5 +1,5 @@
 import { beforeEach } from "@jest/globals";
-import useReduxProvider from "@testing/fixtures/useReduxProvider";
+import useReduxProvider from "../../../fixtures/useReduxProvider";
 import GridDetailRow from "@components/organisms/toDoList/GridDetailRow";
 import { screen } from "@testing-library/react";
 

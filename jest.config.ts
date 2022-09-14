@@ -20,6 +20,7 @@ export default {
     "^@pages/(.*)$": "<rootDir>/pages/$1",
     "^@ui/(.*)$": "<rootDir>/ui/$1",
     "^@hooks/(.*)$": "<rootDir>/src/hooks/$1",
+    "@components/(.*)$": "<rootDir>/components/$1",
   },
   testMatch: ["<rootDir>/**/*.test.(js|jsx|ts|tsx)", "<rootDir>/(tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx))"],
   transformIgnorePatterns: ["<rootDir>/node_modules/"],

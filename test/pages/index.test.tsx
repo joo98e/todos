@@ -1,12 +1,12 @@
+import "@testing-library/jest-dom";
 import configureStore from "redux-mock-store";
 import { render, screen } from "@testing-library/react";
 import GridOrg from "@components/organisms/toDoList/GridOrg";
 import Card from "@components/molecules/toDoList/Card";
 import AddToDoCard from "@components/molecules/toDoList/AddToDoCard";
-import "@testing-library/jest-dom";
 import exp from "constants";
 import { afterEach, beforeEach } from "@jest/globals";
-import useCustomProvider from "@testing/fixtures/useCustomProvider";
+import useCustomProvider from "../fixtures/useCustomProvider";
 
 describe(`[pages]`, function () {
   const toDoList = [

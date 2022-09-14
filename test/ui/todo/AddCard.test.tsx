@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe } from "@jest/globals";
 import AddToDoCard from "@components/molecules/toDoList/AddToDoCard";
-import useReduxProvider from "@testing/fixtures/useReduxProvider";
+import useReduxProvider from "../../fixtures/useReduxProvider";
 import { getByText } from "@testing-library/dom";
 import { act, cleanup, fireEvent, screen } from "@testing-library/react";
 import { useDispatch } from "react-redux";
