@@ -4,7 +4,6 @@
  */
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import getPageTitleByPathname from "@utils/getPageTitleByPathname";
 
 const usePathName = () => {
   const { pathname } = useRouter();

@@ -1,4 +1,3 @@
-import getPageTitleByPathname from "@utils/getPageTitleByPathname";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 import { PrevIcon } from "@components/atom/svg/Prev";
@@ -44,7 +43,7 @@ const PageTitle = () => {
         </IconButton>
       )}
       <Typhography fontSize={36} italy={true} style={{ textIndent: "64px" }}>
-        {getPageTitleByPathname(router.pathname)}
+        {current}
       </Typhography>
     </StyledTitle>
   );
