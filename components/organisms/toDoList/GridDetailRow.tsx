@@ -7,6 +7,7 @@ import { IToDo } from "@store/slices/types/ToDo";
 import { IRowProps } from "@components/organisms/toDoList/types";
 import Typhography from "../../atom/Typography";
 import Button from "@components/atom/Button";
+import { css } from "@emotion/react";
 
 const Grid = styled.div`
   display: grid;
@@ -15,30 +16,24 @@ const Grid = styled.div`
   align-items: center;
 `;
 
-const GridItem = styled.div``;
+const GridItem = styled.div<{ isCompleted: boolean }>`
+  ${(props) =>
+    props.isCompleted &&
+    css`
+      text-decoration: line-through;
+    `}
+`;
 
 const GridDetailRow = ({ detail: { id, isCompleted, desc, title } }: IRowProps) => {
   return (
     <Grid>
-      <GridItem>
-        {isCompleted ? (
-          <Typhography variant={"sub"} style={{ textDecoration: "line-through" }} fontSize={18}>
-            {title}
-          </Typhography>
-        ) : (
-          <Typhography fontSize={18}>{title}</Typhography>
-        )}
+      <GridItem isCompleted={isCompleted}>
+        <Typhography fontSize={18}>{title}</Typhography>
       </GridItem>
-      <GridItem>
-        {isCompleted ? (
-          <Typhography style={{ textDecoration: "line-through" }} fontSize={16}>
-            {desc}
-          </Typhography>
-        ) : (
-          <Typhography fontSize={16}>{desc}</Typhography>
-        )}
+      <GridItem isCompleted={isCompleted}>
+        <Typhography fontSize={16}>{desc}</Typhography>
       </GridItem>
-      <GridItem>
+      <GridItem isCompleted={false}>
         {!isCompleted ? (
           <CompleteButton detailToDoId={id} />
         ) : (

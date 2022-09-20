@@ -70,7 +70,7 @@ const useToDo = () => {
     getAllToDos,
     getOneToDo,
     addToDoList,
-    addDetailToDo,
+    addDetailToDo: addDetailToDo,
     completeDetail: completeDetailToDo,
   };
 };
